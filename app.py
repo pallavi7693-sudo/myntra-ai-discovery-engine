@@ -127,9 +127,11 @@ def load_engines():
     retriever = HybridRetrievalEngine()
     return synthesizer, retriever
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 @st.cache_data
 def load_dataset():
-    path = "Processed Data/myntra_multidimensional_enriched.json"
+    path = os.path.join(BASE_DIR, "Processed Data", "myntra_multidimensional_enriched.json")
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     return pd.DataFrame(data)
@@ -285,7 +287,7 @@ def main():
     with tab4:
         st.subheader("Dataset Quality & Audit Explorer")
         
-        audit_json_path = "Processed Data/data_audit_results.json"
+        audit_json_path = os.path.join(BASE_DIR, "Processed Data", "data_audit_results.json")
         if os.path.exists(audit_json_path):
             with open(audit_json_path, "r", encoding="utf-8") as f:
                 audit_data = json.load(f)

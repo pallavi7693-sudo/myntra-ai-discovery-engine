@@ -16,10 +16,17 @@ DOMAIN_KEYWORDS = [
     "eors", "bff", "ekart", "haul", "try on", "reddit", "youtube", "app", "store"
 ]
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 class HybridRetrievalEngine:
     def __init__(self, index_path="Processed Data/vector_index.json", matrix_path="Processed Data/vector_embeddings.npz"):
+        if not os.path.isabs(index_path):
+            index_path = os.path.join(BASE_DIR, index_path)
+        if not os.path.isabs(matrix_path):
+            matrix_path = os.path.join(BASE_DIR, matrix_path)
+            
         if not os.path.exists(index_path) or not os.path.exists(matrix_path):
-            raise FileNotFoundError("Vector index files not found. Run build_vector_index.py first.")
+            raise FileNotFoundError(f"Vector index files not found at {index_path} or {matrix_path}.")
             
         with open(index_path, "r", encoding="utf-8") as f:
             self.index_data = json.load(f)

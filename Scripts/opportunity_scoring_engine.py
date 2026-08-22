@@ -16,7 +16,12 @@ SEVERITY_WEIGHTS = {
     "better_product_comparison": 1.0
 }
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def compute_opportunity_matrix(quantification_file="Processed Data/quantification_results.json"):
+    if not os.path.isabs(quantification_file):
+        quantification_file = os.path.join(BASE_DIR, quantification_file)
+        
     if not os.path.exists(quantification_file):
         raise FileNotFoundError(f"Quantification file missing at {quantification_file}. Run Stage 2/3 first.")
         
