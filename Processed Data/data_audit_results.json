@@ -1,0 +1,678 @@
+{
+  "summary": {
+    "total_files": 14,
+    "total_rows": 6562
+  },
+  "datasets": {
+    "reddit_myntra_additional_labeled.csv": {
+      "folder": "Processed Data",
+      "file_name": "reddit_myntra_additional_labeled.csv",
+      "rows": 428,
+      "columns": 17,
+      "is_headerless": false,
+      "column_names": [
+        "dataType",
+        "subredditName",
+        "postId",
+        "id",
+        "parentId",
+        "createdAt",
+        "score",
+        "upVotes",
+        "title",
+        "body",
+        "post_context",
+        "candidate_intents",
+        "contentUrl",
+        "primary_intent",
+        "secondary_intents",
+        "intent_confidence",
+        "is_relevant"
+      ],
+      "primary_text_column": "title_plus_body",
+      "valid_text_rows": 428,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 6,
+      "duplicate_rate_pct": 1.4,
+      "avg_char_len": 589.8,
+      "median_word_count": 74,
+      "min_word_count": 12,
+      "max_word_count": 924,
+      "labeled_intent_distribution": {
+        "other": {
+          "count": 366,
+          "share_pct": 85.51
+        },
+        "wishlist": {
+          "count": 29,
+          "share_pct": 6.78
+        },
+        "sale_discount": {
+          "count": 23,
+          "share_pct": 5.37
+        },
+        "coupon": {
+          "count": 4,
+          "share_pct": 0.93
+        },
+        "restock_availability": {
+          "count": 2,
+          "share_pct": 0.47
+        },
+        "price_drop": {
+          "count": 2,
+          "share_pct": 0.47
+        },
+        "product_quality": {
+          "count": 1,
+          "share_pct": 0.23
+        },
+        "cancellation_refund": {
+          "count": 1,
+          "share_pct": 0.23
+        }
+      },
+      "multi_signal_sample_count": 34,
+      "sample_multi_signal_rows": [
+        {
+          "index": 28,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "quality",
+            "sale"
+          ],
+          "text_snippet": "nan be careful with the huda beauty palettes you buy, i think all the small ones are made in china (as opposed to the big ones like mercury "
+        },
+        {
+          "index": 33,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "fit",
+            "review"
+          ],
+          "text_snippet": "nan for style advice, outfit help, item finding, store reviews (websites, apps, instagram shops), and more. - &#x1f4ac; **[join ifa discord "
+        },
+        {
+          "index": 36,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "size",
+            "return"
+          ],
+          "text_snippet": "nan pls tell where i can get modest and classy plus size dresses online in india? should be ideal for delhi summers and have good return/exc"
+        },
+        {
+          "index": 47,
+          "primary_intent": "wishlist",
+          "detected_keywords": [
+            "price",
+            "wishlist",
+            "discount"
+          ],
+          "text_snippet": "nan infact i had kept a track of a few items frm my wishlist and realised tht they ve increased the prices and thn gave a discount and tht a"
+        },
+        {
+          "index": 52,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "price",
+            "discount"
+          ],
+          "text_snippet": "nan if they mark up the prices and then stick on a ridiculous discount rate, you\u2019d be surprised how many will buy."
+        },
+        {
+          "index": 53,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "bought",
+            "sale"
+          ],
+          "text_snippet": "nan i have bought cheaper stuff without the sale"
+        },
+        {
+          "index": 67,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "review",
+            "price",
+            "bought"
+          ],
+          "text_snippet": "nan https://preview.redd.it/8xtq20zqs15e1.jpeg?width=720&format=pjpg&auto=webp&s=53db9822510a304c89b0b08b2673a9ddc52f67fe\n\nbought for 175+47"
+        },
+        {
+          "index": 76,
+          "primary_intent": "sale_discount",
+          "detected_keywords": [
+            "wait",
+            "discount"
+          ],
+          "text_snippet": "nan things i wanted are not even on any discount. will wait for dec eors for sure"
+        },
+        {
+          "index": 85,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "price",
+            "quality",
+            "bought"
+          ],
+          "text_snippet": "nan do not buy these teddy jackets. i bought them a month ago and was sooo disappointed by the quality. it looked like it has been picked up"
+        },
+        {
+          "index": 97,
+          "primary_intent": "sale_discount",
+          "detected_keywords": [
+            "sale",
+            "coupons"
+          ],
+          "text_snippet": "nan bbw is on sale, esp w coupons and supercoins, u can get mists/lotions/shower gels for 500-600"
+        }
+      ]
+    },
+    "reddit_myntra_labeled.csv": {
+      "folder": "Processed Data",
+      "file_name": "reddit_myntra_labeled.csv",
+      "rows": 634,
+      "columns": 17,
+      "is_headerless": false,
+      "column_names": [
+        "dataType",
+        "subredditName",
+        "postId",
+        "id",
+        "parentId",
+        "createdAt",
+        "score",
+        "upVotes",
+        "title",
+        "body",
+        "post_context",
+        "candidate_intents",
+        "contentUrl",
+        "primary_intent",
+        "secondary_intents",
+        "intent_confidence",
+        "is_relevant"
+      ],
+      "primary_text_column": "title_plus_body",
+      "valid_text_rows": 634,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 14,
+      "duplicate_rate_pct": 2.21,
+      "avg_char_len": 770.5,
+      "median_word_count": 95,
+      "min_word_count": 5,
+      "max_word_count": 1112,
+      "labeled_intent_distribution": {
+        "other": {
+          "count": 299,
+          "share_pct": 47.16
+        },
+        "customer_service": {
+          "count": 102,
+          "share_pct": 16.09
+        },
+        "delivery": {
+          "count": 62,
+          "share_pct": 9.78
+        },
+        "product_quality": {
+          "count": 59,
+          "share_pct": 9.31
+        },
+        "coupon": {
+          "count": 33,
+          "share_pct": 5.21
+        },
+        "cancellation_refund": {
+          "count": 31,
+          "share_pct": 4.89
+        },
+        "price_drop": {
+          "count": 24,
+          "share_pct": 3.79
+        },
+        "wishlist": {
+          "count": 10,
+          "share_pct": 1.58
+        },
+        "restock_availability": {
+          "count": 6,
+          "share_pct": 0.95
+        },
+        "purchase_intent": {
+          "count": 4,
+          "share_pct": 0.63
+        },
+        "sale_discount": {
+          "count": 3,
+          "share_pct": 0.47
+        },
+        "product_discovery": {
+          "count": 1,
+          "share_pct": 0.16
+        }
+      },
+      "multi_signal_sample_count": 44,
+      "sample_multi_signal_rows": [
+        {
+          "index": 17,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "fit",
+            "sale"
+          ],
+          "text_snippet": "is myntra profitable ? how are they able to afford a sale so big almost every month ? till when can they afford it ? nan"
+        },
+        {
+          "index": 26,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "bought",
+            "sale"
+          ],
+          "text_snippet": "spot the authenticity could u guys kindly tell me is the product real or not? the seller is omnitech retail, and rn a puma sale is live on m"
+        },
+        {
+          "index": 27,
+          "primary_intent": "delivery",
+          "detected_keywords": [
+            "wait",
+            "sale"
+          ],
+          "text_snippet": "myntra delayed my order twice for the same product , what kind of scam logistics is this? myntra delayed my order twice for the same product"
+        },
+        {
+          "index": 29,
+          "primary_intent": "delivery",
+          "detected_keywords": [
+            "bought",
+            "sale"
+          ],
+          "text_snippet": "query on orders placed i placed a few orders on myntra during the republic sale last week. as per the app, all of them were supposed to be d"
+        },
+        {
+          "index": 61,
+          "primary_intent": "product_quality",
+          "detected_keywords": [
+            "return",
+            "sale"
+          ],
+          "text_snippet": "myntra is selling counterfeit watches on a name of sale ordered a casio g-shock gbm-2100 from myntra for \u20b912,790 (mrp \u20b919,995) and received "
+        },
+        {
+          "index": 85,
+          "primary_intent": "product_quality",
+          "detected_keywords": [
+            "review",
+            "return"
+          ],
+          "text_snippet": "nan many buyers are simply unaware of such fraudulent activity on myntra. anyone who knows how the original product actually looks can easil"
+        },
+        {
+          "index": 92,
+          "primary_intent": "customer_service",
+          "detected_keywords": [
+            "wait",
+            "sale"
+          ],
+          "text_snippet": "myntra is systematically scamming hundreds of customers through their \"glam clan\" program - they owe me \u20b97,400+ and refuse to pay. please he"
+        },
+        {
+          "index": 128,
+          "primary_intent": "other",
+          "detected_keywords": [
+            "bought",
+            "discount",
+            "coupons"
+          ],
+          "text_snippet": "f*ck myntra and their shady practices wth is wrong with myntra??? i bought two items from nike. got two coupons of 854 each (nike exclusive "
+        },
+        {
+          "index": 147,
+          "primary_intent": "customer_service",
+          "detected_keywords": [
+            "wait",
+            "return",
+            "bought",
+            "discount",
+            "sale"
+          ],
+          "text_snippet": "do not buy beauty items from the myntra sale i really should have stuck to nykaa for buying beauty products.\n\ni bought huda beauty lashes an"
+        },
+        {
+          "index": 153,
+          "primary_intent": "coupon",
+          "detected_keywords": [
+            "price",
+            "wait",
+            "return",
+            "discount"
+          ],
+          "text_snippet": "myntra motherhub. never wait for order beyond expected date. ordered two products on 29th. for the last three days, the parcel was stuck at "
+        }
+      ]
+    },
+    "ajio_playstore.csv": {
+      "folder": "Raw Data",
+      "file_name": "ajio_playstore.csv",
+      "rows": 1000,
+      "columns": 10,
+      "is_headerless": true,
+      "column_names": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "primary_text_column": "col_7",
+      "valid_text_rows": 1000,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 398,
+      "duplicate_rate_pct": 39.8,
+      "avg_char_len": 56.1,
+      "median_word_count": 2,
+      "min_word_count": 1,
+      "max_word_count": 100
+    },
+    "myntra_playstore.csv": {
+      "folder": "Raw Data",
+      "file_name": "myntra_playstore.csv",
+      "rows": 1000,
+      "columns": 10,
+      "is_headerless": true,
+      "column_names": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "primary_text_column": "col_7",
+      "valid_text_rows": 1000,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 271,
+      "duplicate_rate_pct": 27.1,
+      "avg_char_len": 51.7,
+      "median_word_count": 3,
+      "min_word_count": 1,
+      "max_word_count": 98
+    },
+    "myntra_raw.csv": {
+      "folder": "Raw Data",
+      "file_name": "myntra_raw.csv",
+      "rows": 1000,
+      "columns": 8,
+      "is_headerless": false,
+      "column_names": [
+        "id",
+        "source",
+        "subreddit",
+        "post_title",
+        "text",
+        "url",
+        "date",
+        "type"
+      ],
+      "primary_text_column": "text",
+      "valid_text_rows": 1000,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 5,
+      "duplicate_rate_pct": 0.5,
+      "avg_char_len": 19.0,
+      "median_word_count": 2,
+      "min_word_count": 2,
+      "max_word_count": 2
+    },
+    "nykaa_appstore.csv": {
+      "folder": "Raw Data",
+      "file_name": "nykaa_appstore.csv",
+      "rows": 50,
+      "columns": 9,
+      "is_headerless": true,
+      "column_names": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "primary_text_column": "col_7",
+      "valid_text_rows": 50,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 49,
+      "duplicate_rate_pct": 98.0,
+      "avg_char_len": 23.0,
+      "median_word_count": 4,
+      "min_word_count": 4,
+      "max_word_count": 4
+    },
+    "nykaa_playstore.csv": {
+      "folder": "Raw Data",
+      "file_name": "nykaa_playstore.csv",
+      "rows": 1000,
+      "columns": 10,
+      "is_headerless": true,
+      "column_names": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "primary_text_column": "col_7",
+      "valid_text_rows": 1000,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 290,
+      "duplicate_rate_pct": 29.0,
+      "avg_char_len": 92.5,
+      "median_word_count": 3,
+      "min_word_count": 1,
+      "max_word_count": 100
+    },
+    "reddit_myntra_additional_cleaned.csv": {
+      "folder": "Raw Data",
+      "file_name": "reddit_myntra_additional_cleaned.csv",
+      "rows": 428,
+      "columns": 13,
+      "is_headerless": false,
+      "column_names": [
+        "dataType",
+        "subredditName",
+        "postId",
+        "id",
+        "parentId",
+        "createdAt",
+        "score",
+        "upVotes",
+        "title",
+        "body",
+        "post_context",
+        "candidate_intents",
+        "contentUrl"
+      ],
+      "primary_text_column": "title_plus_body",
+      "valid_text_rows": 428,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 6,
+      "duplicate_rate_pct": 1.4,
+      "avg_char_len": 589.8,
+      "median_word_count": 74,
+      "min_word_count": 12,
+      "max_word_count": 924
+    },
+    "reddit_myntra_cleaned.csv": {
+      "folder": "Raw Data",
+      "file_name": "reddit_myntra_cleaned.csv",
+      "rows": 634,
+      "columns": 13,
+      "is_headerless": false,
+      "column_names": [
+        "dataType",
+        "subredditName",
+        "postId",
+        "id",
+        "parentId",
+        "createdAt",
+        "score",
+        "upVotes",
+        "title",
+        "body",
+        "post_context",
+        "candidate_intents",
+        "contentUrl"
+      ],
+      "primary_text_column": "title_plus_body",
+      "valid_text_rows": 634,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 14,
+      "duplicate_rate_pct": 2.21,
+      "avg_char_len": 770.5,
+      "median_word_count": 95,
+      "min_word_count": 5,
+      "max_word_count": 1112
+    },
+    "reddit_myntra_raw.csv": {
+      "folder": "Raw Data",
+      "file_name": "reddit_myntra_raw.csv",
+      "rows": 0,
+      "columns": 8,
+      "is_headerless": false,
+      "column_names": [
+        "id",
+        "source",
+        "subreddit",
+        "post_title",
+        "text",
+        "url",
+        "date",
+        "type"
+      ],
+      "primary_text_column": "text",
+      "valid_text_rows": 0,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 0,
+      "duplicate_rate_pct": 0.0,
+      "avg_char_len": 0.0,
+      "median_word_count": 0,
+      "min_word_count": 0,
+      "max_word_count": 0
+    },
+    "youtube_comments_filtered.csv": {
+      "folder": "Raw Data",
+      "file_name": "youtube_comments_filtered.csv",
+      "rows": 51,
+      "columns": 7,
+      "is_headerless": false,
+      "column_names": [
+        "comment",
+        "author",
+        "published_at",
+        "like_count",
+        "video_id",
+        "intent_category",
+        "matched_keyword"
+      ],
+      "primary_text_column": "comment",
+      "valid_text_rows": 51,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 8,
+      "duplicate_rate_pct": 15.69,
+      "avg_char_len": 46.5,
+      "median_word_count": 5,
+      "min_word_count": 1,
+      "max_word_count": 66
+    },
+    "youtube_comments_filtered_real.csv": {
+      "folder": "Raw Data",
+      "file_name": "youtube_comments_filtered_real.csv",
+      "rows": 20,
+      "columns": 7,
+      "is_headerless": false,
+      "column_names": [
+        "comment",
+        "author",
+        "published_at",
+        "like_count",
+        "video_id",
+        "intent_category",
+        "matched_keyword"
+      ],
+      "primary_text_column": "comment",
+      "valid_text_rows": 20,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 0,
+      "duplicate_rate_pct": 0.0,
+      "avg_char_len": 87.6,
+      "median_word_count": 11,
+      "min_word_count": 2,
+      "max_word_count": 70
+    },
+    "youtube_comments_real.csv": {
+      "folder": "Raw Data",
+      "file_name": "youtube_comments_real.csv",
+      "rows": 218,
+      "columns": 5,
+      "is_headerless": false,
+      "column_names": [
+        "comment",
+        "author",
+        "published_at",
+        "like_count",
+        "video_id"
+      ],
+      "primary_text_column": "comment",
+      "valid_text_rows": 218,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 2,
+      "duplicate_rate_pct": 0.92,
+      "avg_char_len": 44.3,
+      "median_word_count": 6,
+      "min_word_count": 1,
+      "max_word_count": 70
+    },
+    "youtube_comments_test.csv": {
+      "folder": "Raw Data",
+      "file_name": "youtube_comments_test.csv",
+      "rows": 99,
+      "columns": 5,
+      "is_headerless": false,
+      "column_names": [
+        "comment",
+        "author",
+        "published_at",
+        "like_count",
+        "video_id"
+      ],
+      "primary_text_column": "comment",
+      "valid_text_rows": 99,
+      "empty_text_rows": 0,
+      "duplicate_text_rows": 9,
+      "duplicate_rate_pct": 9.09,
+      "avg_char_len": 47.1,
+      "median_word_count": 6,
+      "min_word_count": 1,
+      "max_word_count": 66
+    }
+  }
+}

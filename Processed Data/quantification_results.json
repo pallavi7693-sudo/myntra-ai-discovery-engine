@@ -1,0 +1,131 @@
+{
+  "dataset_summary": {
+    "total_records_all_brands": 6562,
+    "myntra_friction_population_denominator": 969,
+    "all_brands_wishlist_intent_denominator": 109
+  },
+  "myntra_scoped_barriers": [
+    {
+      "metric_title": "price",
+      "numerator": 349,
+      "denominator": 969,
+      "percentage": 36.0,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "36.0% of Myntra purchase-hesitation conversations (349/969) mentioned price."
+    },
+    {
+      "metric_title": "quality_uncertainty",
+      "numerator": 229,
+      "denominator": 969,
+      "percentage": 23.6,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "23.6% of Myntra purchase-hesitation conversations (229/969) mentioned quality_uncertainty."
+    },
+    {
+      "metric_title": "delivery_concern",
+      "numerator": 185,
+      "denominator": 969,
+      "percentage": 19.1,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "19.1% of Myntra purchase-hesitation conversations (185/969) mentioned delivery_concern."
+    },
+    {
+      "metric_title": "return_concern",
+      "numerator": 143,
+      "denominator": 969,
+      "percentage": 14.8,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "14.8% of Myntra purchase-hesitation conversations (143/969) mentioned return_concern."
+    },
+    {
+      "metric_title": "size_uncertainty",
+      "numerator": 96,
+      "denominator": 969,
+      "percentage": 9.9,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "9.9% of Myntra purchase-hesitation conversations (96/969) mentioned size_uncertainty."
+    },
+    {
+      "metric_title": "lack_of_reviews",
+      "numerator": 51,
+      "denominator": 969,
+      "percentage": 5.3,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "5.3% of Myntra purchase-hesitation conversations (51/969) mentioned lack_of_reviews."
+    },
+    {
+      "metric_title": "availability",
+      "numerator": 32,
+      "denominator": 969,
+      "percentage": 3.3,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "3.3% of Myntra purchase-hesitation conversations (32/969) mentioned availability."
+    },
+    {
+      "metric_title": "fit_uncertainty",
+      "numerator": 17,
+      "denominator": 969,
+      "percentage": 1.8,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "1.8% of Myntra purchase-hesitation conversations (17/969) mentioned fit_uncertainty."
+    }
+  ],
+  "opportunity_matrix": [
+    {
+      "metric_title": "better_price_visibility",
+      "numerator": 242,
+      "denominator": 969,
+      "percentage": 25.0,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "25.0% of Myntra purchase-hesitation conversations (242/969) mentioned better_price_visibility."
+    },
+    {
+      "metric_title": "better_quality_information",
+      "numerator": 213,
+      "denominator": 969,
+      "percentage": 22.0,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "22.0% of Myntra purchase-hesitation conversations (213/969) mentioned better_quality_information."
+    },
+    {
+      "metric_title": "better_return_information",
+      "numerator": 128,
+      "denominator": 969,
+      "percentage": 13.2,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "13.2% of Myntra purchase-hesitation conversations (128/969) mentioned better_return_information."
+    },
+    {
+      "metric_title": "better_size_guidance",
+      "numerator": 72,
+      "denominator": 969,
+      "percentage": 7.4,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "7.4% of Myntra purchase-hesitation conversations (72/969) mentioned better_size_guidance."
+    },
+    {
+      "metric_title": "stronger_social_proof",
+      "numerator": 47,
+      "denominator": 969,
+      "percentage": 4.9,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "4.9% of Myntra purchase-hesitation conversations (47/969) mentioned stronger_social_proof."
+    },
+    {
+      "metric_title": "better_product_comparison",
+      "numerator": 42,
+      "denominator": 969,
+      "percentage": 4.3,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "4.3% of Myntra purchase-hesitation conversations (42/969) mentioned better_product_comparison."
+    },
+    {
+      "metric_title": "better_fit_information",
+      "numerator": 17,
+      "denominator": 969,
+      "percentage": 1.8,
+      "population_name": "Myntra purchase-hesitation conversations",
+      "formatted_text": "1.8% of Myntra purchase-hesitation conversations (17/969) mentioned better_fit_information."
+    }
+  ]
+}

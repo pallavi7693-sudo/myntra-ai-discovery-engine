@@ -10,9 +10,6 @@ __pycache__/
 venv/
 env/
 
-# Local data
-Raw Data/
-
 # IDE / editor files
 .vscode/
 .idea/
@@ -23,3 +20,4 @@ Thumbs.db
 
 # Logs
 *.log
+
