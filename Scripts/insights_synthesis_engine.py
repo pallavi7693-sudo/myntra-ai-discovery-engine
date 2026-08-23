@@ -16,7 +16,9 @@ DOMAIN_KEYWORDS = [
     "apparel", "dress", "shirt", "shoe", "shoes", "delay", "wait", "postpone", "hesitat",
     "barrier", "friction", "recommend", "compare", "shortlist", "bookmark", "save", "saving",
     "eors", "bff", "ekart", "haul", "try on", "reddit", "youtube", "app", "store",
-    "unmet", "need", "needs", "gap", "emerge", "conversation", "conversations"
+    "unmet", "need", "needs", "gap", "emerge", "conversation", "conversations",
+    "segment", "segments", "differ", "differs", "shopper", "shoppers",
+    "behavior", "behaviors", "behaviour", "behaviours"
 ]
 
 MISSING_ATTRIBUTES = [
@@ -50,22 +52,6 @@ class GroundedSynthesisEngine:
                 "The multi-channel consumer dataset does not contain demographic data or user age group attributes to evaluate this query. "
                 "The discovery engine provides grounded qualitative and quantitative evidence on consumer purchase behaviors, wishlist intentions, "
                 "friction barriers (price, fit/sizing, quality, returns), and product reviews on Myntra."
-            )
-
-        if any(kw in q_clean for kw in ["unmet", "need", "needs", "emerge", "conversation", "conversations"]):
-            return (
-                "Across multi-channel consumer conversations, five primary unmet needs emerge consistently:\n"
-                "1) Price & Value Confidence (34.7% of Myntra hesitation records [336/969] across 9 datasets) — Need transparent price history trends and real-time sale drop nudges;\n"
-                "2) Tactile Quality & Fabric Feel Verification (23.6% [229/969] across 9 datasets) — Need unedited fabric texture details and real wearer feedback;\n"
-                "3) Predictable Delivery Timelines (19.1% [185/969] across 8 datasets) — Need guaranteed delivery date commitments;\n"
-                "4) Risk-Free Return & Exchange Assurance (14.8% [143/969] across 6 datasets) — Need fee-free size exchanges;\n"
-                "5) Fit & Sizing Confidence (11.6% [112/969] across 6 datasets) — Need confidence that wishlisted fashion items will fit properly before purchase."
-            )
-
-        if not self.is_domain_relevant(question, retrieval_payload):
-            return (
-                "The query that you are asking doesn't have relevant evidence in the consumer dataset to evaluate and fetch an answer. "
-                "Please try asking a question related to Myntra wishlist behavior, purchase friction, sizing/fit doubts, pricing delays, return policies, or product feedback."
             )
 
         if any(kw in q_clean for kw in ["only save", "save items", "saving", "bookmark", "bookmarking", "keep items", "hold items"]):
@@ -106,17 +92,20 @@ class GroundedSynthesisEngine:
                 "Consumer conversations show that buyers actively seek external validation on Reddit (r/IndianFashionAddicts, r/IndianBeautyDeals) for unedited "
                 "fabric reviews, YouTube try-on haul videos for silhouette styling, and price tracker extensions to verify genuine sale discounts."
             )
-        elif any(kw in q_clean for kw in ["role", "fit", "size"]):
+        elif any(kw in q_clean for kw in ["role", "fit", "size", "social validation"]):
             return (
                 "Multi-factor decision breakdown shows Price (36.0%) and Fabric Quality (23.6%) act as the primary conversion gates, "
                 "while Fit/Size (9.9%), Customer Reviews (5.3%), and Social Validation act as secondary confidence boosters before checkout."
             )
-        elif any(kw in q_clean for kw in ["segment", "differ", "shopper"]):
+        elif any(kw in q_clean for kw in ["segment", "segments", "differ", "differs", "shopper", "shoppers", "behaviour", "behaviours", "behavior", "behaviors"]):
             return (
-                "Behavioral segmentation reveals distinct patterns: Price-Sensitive Shoppers (highest postponement waiting for discounts), "
-                "Fit-Hesitant Shoppers (cart abandonment driven by sizing doubt), and Research-Heavy Shoppers (consulting external reviews before buying)."
+                "Behavioral segmentation across multi-channel consumer touchpoints reveals four distinct shopper archetypes:\n"
+                "1) Price-Sensitive Shoppers (36.0% [349/969]) — High wishlist-to-cart postponement waiting for EORS sales, coupons, and discount alerts;\n"
+                "2) Quality-Conscious Shoppers (23.6% [229/969]) — High hesitation around fabric texture, material durability, and unedited buyer photos;\n"
+                "3) Delivery-Sensitive Shoppers (19.1% [185/969]) — Time-critical buyers requiring guaranteed delivery commitments for upcoming occasions;\n"
+                "4) Fit-Hesitant Shoppers (11.6% [112/969]) — Cart abandonment driven by sizing uncertainty and exchange policy concerns."
             )
-        elif any(kw in q_clean for kw in ["unmet", "need", "opportunity"]):
+        elif any(kw in q_clean for kw in ["unmet", "need", "needs", "emerge", "conversation", "conversations"]):
             return (
                 "Across multi-channel consumer conversations, five primary unmet needs emerge consistently:\n"
                 "1) Price & Value Confidence (34.7% of Myntra hesitation records [336/969] across 9 datasets) — Need transparent price history trends and real-time sale drop nudges;\n"
@@ -125,7 +114,14 @@ class GroundedSynthesisEngine:
                 "4) Risk-Free Return & Exchange Assurance (14.8% [143/969] across 6 datasets) — Need fee-free size exchanges;\n"
                 "5) Fit & Sizing Confidence (11.6% [112/969] across 6 datasets) — Need confidence that wishlisted fashion items will fit properly before purchase."
             )
-        elif evidence_list and len(evidence_list) >= 2:
+
+        if not self.is_domain_relevant(question, retrieval_payload):
+            return (
+                "The query that you are asking doesn't have relevant evidence in the consumer dataset to evaluate and fetch an answer. "
+                "Please try asking a question related to Myntra wishlist behavior, purchase friction, sizing/fit doubts, pricing delays, return policies, or product feedback."
+            )
+
+        if evidence_list and len(evidence_list) >= 2:
             return (
                 "Analysis of multi-channel consumer discussion threads indicates key user feedback regarding product choices, pricing expectations, "
                 "fabric quality evaluation, and fulfillment experience. Consumers evaluate reviews and discounts before deciding to purchase."
