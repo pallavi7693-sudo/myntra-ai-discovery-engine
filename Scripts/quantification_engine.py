@@ -91,14 +91,77 @@ def run_quantification_analysis():
     wishlist_all_df = df[df.apply(is_wishlist_intent_record, axis=1)]
     wishlist_denom = len(wishlist_all_df)
     
+    # 5. SENTIMENT ANALYSIS QUANTIFICATION (UNDERSTAND -> QUANTIFY)
+    df["sent_label"] = df["sentiment_analysis"].apply(lambda s: s.get("sentiment_label", "Unknown") if isinstance(s, dict) else "Unknown")
+    usable_sent_df = df[df["sent_label"] != "Unknown"]
+    usable_sent_denom = len(usable_sent_df)
+    
+    overall_sentiment_dist = {}
+    if usable_sent_denom > 0:
+        for lbl, cnt in usable_sent_df["sent_label"].value_counts().items():
+            pct = round((cnt / usable_sent_denom * 100), 1)
+            overall_sentiment_dist[lbl] = {
+                "numerator": cnt,
+                "denominator": usable_sent_denom,
+                "percentage": pct,
+                "formatted_text": f"{pct}% ({cnt}/{usable_sent_denom}) of usable records had {lbl.lower()} sentiment."
+            }
+            
+    # Sentiment by Purchase Barrier Category (Myntra Sub-Population)
+    barrier_sentiment = {}
+    for barrier in barrier_counts.keys():
+        sub_barrier = myntra_friction_df[myntra_friction_df["analytical_dimensions"].apply(lambda d: barrier in d.get("purchase_barriers", []))]
+        sub_usable = sub_barrier[sub_barrier["sentiment_analysis"].apply(lambda s: s.get("sentiment_label", "Unknown") != "Unknown" if isinstance(s, dict) else False)]
+        sub_denom = len(sub_usable)
+        dist = {}
+        if sub_denom > 0:
+            for lbl, cnt in sub_usable["sentiment_analysis"].apply(lambda s: s.get("sentiment_label")).value_counts().items():
+                pct = round((cnt / sub_denom * 100), 1)
+                dist[lbl] = {
+                    "numerator": cnt,
+                    "denominator": sub_denom,
+                    "percentage": pct,
+                    "formatted_text": f"{pct}% ({cnt}/{sub_denom}) of '{barrier}' friction records expressed {lbl.lower()} sentiment."
+                }
+        barrier_sentiment[barrier] = {
+            "total_barrier_records": len(sub_barrier),
+            "usable_denominator": sub_denom,
+            "distribution": dist
+        }
+        
+    # Sentiment for Postponed Purchases
+    postponed_df = myntra_friction_df[myntra_friction_df["analytical_dimensions"].apply(lambda d: d.get("purchase_status") == "postponed")]
+    postponed_usable = postponed_df[postponed_df["sentiment_analysis"].apply(lambda s: s.get("sentiment_label", "Unknown") != "Unknown" if isinstance(s, dict) else False)]
+    postponed_denom = len(postponed_usable)
+    postponed_dist = {}
+    if postponed_denom > 0:
+        for lbl, cnt in postponed_usable["sentiment_analysis"].apply(lambda s: s.get("sentiment_label")).value_counts().items():
+            pct = round((cnt / postponed_denom * 100), 1)
+            postponed_dist[lbl] = {
+                "numerator": cnt,
+                "denominator": postponed_denom,
+                "percentage": pct,
+                "formatted_text": f"{pct}% ({cnt}/{postponed_denom}) of postponed purchase records expressed {lbl.lower()} sentiment."
+            }
+            
     results_payload = {
         "dataset_summary": {
             "total_records_all_brands": total_records,
+            "usable_sentiment_denominator": usable_sent_denom,
             "myntra_friction_population_denominator": myntra_friction_denom,
             "all_brands_wishlist_intent_denominator": wishlist_denom
         },
         "myntra_scoped_barriers": scoped_barrier_results,
-        "opportunity_matrix": opportunity_matrix
+        "opportunity_matrix": opportunity_matrix,
+        "sentiment_quantification": {
+            "overall_sentiment_distribution": overall_sentiment_dist,
+            "barrier_sentiment_breakdown": barrier_sentiment,
+            "postponed_purchase_sentiment": {
+                "total_postponed_records": len(postponed_df),
+                "usable_denominator": postponed_denom,
+                "distribution": postponed_dist
+            }
+        }
     }
     
     output_report_path = "Processed Data/quantification_results.json"

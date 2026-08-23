@@ -257,6 +257,7 @@ class HybridRetrievalEngine:
                     "similarity_score": score,
                     "primary_intent": record["primary_intent"],
                     "user_segment": record.get("user_segment", "general_shopper"),
+                    "sentiment_analysis": record.get("sentiment_analysis", {}),
                     "verbatim_text": raw_txt[:300],
                     "evidence_quote": full_conversation[:500]
                 })

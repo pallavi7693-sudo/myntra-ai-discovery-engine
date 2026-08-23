@@ -112,6 +112,14 @@ The engine processes 14 audited CSV files across 4 consumer touchpoints:
 5. **Dataset Quality & Audit Explorer**:
    - Interactive audit dashboard inspecting labeled intent distributions and file statistics.
 
+6. **Deterministic Offline VADER Sentiment Analysis**:
+   - **Methodology**: Uses NLTK VADER (`SentimentIntensityAnalyzer`), a rule-based, deterministic, lightweight NLP approach.
+   - **No LLM API Required**: Operates 100% offline without external LLM dependencies.
+   - **Pipeline Position**: Integrated directly into the **UNDERSTAND** stage (`extract_behavioral_dimensions.py`).
+   - **Score Metric (`sentiment_score`)**: Normalized compound score ranging from `-1.0` (extreme negative) to `+1.0` (extreme positive).
+   - **Behavioral Signal Coexistence**: Sentiment operates alongside intent, purchase status, and purchase barriers (e.g. tracking positive sentiment towards product styling alongside price postponement barriers).
+   - **No Fabrication Safeguard**: Empty/unusable inputs return `sentiment_label: "Unknown"`, `sentiment_score: None`, and `sentiment_confidence: None` without fabricating values.
+
 ---
 
 ## 🚀 Quickstart Guide

@@ -131,6 +131,16 @@ Single-label classification is insufficient for deep behavioral discovery. A sin
 6. **Purchase Status:** `purchased`, `likely_to_purchase`, `postponed`, `abandoned`, `uncertain`
 7. **Opportunity Area:** `better_size_guidance`, `better_fit_information`, `stronger_social_proof`, `better_price_visibility`, `better_product_comparison`, `better_styling_guidance`, `better_quality_information`, `better_return_information`
 
+### 4.1 Deterministic VADER Sentiment Analysis Module
+
+- **Methodology**: Operates in the **UNDERSTAND** stage via NLTK VADER (`SentimentIntensityAnalyzer`).
+- **No LLM Requirement**: Uses rule-based, deterministic NLP. Operates 100% offline without external LLM APIs.
+- **Sentiment Scores & Labels**:
+  - `sentiment_label`: `Positive`, `Neutral`, `Negative`, `Mixed`, or `Unknown` (for short/unusable text).
+  - `sentiment_score`: Normalized compound score in $[-1.0, +1.0]$.
+  - `sentiment_confidence`: Dominant component strength ($\max(\text{pos}, \text{neu}, \text{neg})$).
+- **Behavioral Signal Co-existence**: Sentiment analysis runs alongside behavioral extraction without replacing intent, status, or barriers. Mixed sentiment explicitly captures co-occurring positive and negative cues (e.g. positive styling feedback with price/size hesitation).
+
 ---
 
 ## 5. Grounded RAG & Retrieval Engine Workflow

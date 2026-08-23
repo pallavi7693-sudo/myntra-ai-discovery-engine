@@ -98,6 +98,10 @@ st.markdown("""
     .badge-playstore { background-color: #00875A; color: white; }
     .badge-appstore { background-color: #0066CC; color: white; }
     .badge-youtube { background-color: #FF0000; color: white; }
+    .badge-positive { background-color: #2E7D32; color: white; }
+    .badge-negative { background-color: #C62828; color: white; }
+    .badge-mixed { background-color: #6A1B9A; color: white; }
+    .badge-neutral { background-color: #616161; color: white; }
     
     .stButton>button {
         background-color: #FF3F6C !important;
@@ -236,6 +240,82 @@ def main():
         st.subheader("Myntra Opportunity Score Chart")
         st.bar_chart(df_opp.set_index("opportunity_area")["opportunity_score"])
         
+        st.divider()
+        st.subheader("😊 Consumer Sentiment & Barrier Emotion Analytics (VADER Offline NLP)")
+        st.markdown("Quantified sentiment analysis calculated deterministically using offline VADER NLP across consumer touchpoints (No LLM API required).")
+        
+        quant_json_path = os.path.join(BASE_DIR, "Processed Data", "quantification_results.json")
+        if os.path.exists(quant_json_path):
+            with open(quant_json_path, "r", encoding="utf-8") as qf:
+                qdata = json.load(qf)
+            
+            sent_summary = qdata.get("sentiment_quantification", {})
+            overall_sent = sent_summary.get("overall_sentiment_distribution", {})
+            
+            # Overall Sentiment Metrics Cards
+            s1, s2, s3, s4 = st.columns(4)
+            pos_m = overall_sent.get("Positive", {})
+            neu_m = overall_sent.get("Neutral", {})
+            neg_m = overall_sent.get("Negative", {})
+            mix_m = overall_sent.get("Mixed", {})
+            
+            with s1:
+                st.markdown(f'<div class="metric-card"><div class="metric-value" style="color:#2E7D32;">{pos_m.get("percentage", 0)}%</div><div class="metric-label">Positive Sentiment ({pos_m.get("numerator", 0):,}/{pos_m.get("denominator", 0):,})</div></div>', unsafe_allow_html=True)
+            with s2:
+                st.markdown(f'<div class="metric-card"><div class="metric-value" style="color:#616161;">{neu_m.get("percentage", 0)}%</div><div class="metric-label">Neutral Sentiment ({neu_m.get("numerator", 0):,}/{neu_m.get("denominator", 0):,})</div></div>', unsafe_allow_html=True)
+            with s3:
+                st.markdown(f'<div class="metric-card"><div class="metric-value" style="color:#C62828;">{neg_m.get("percentage", 0)}%</div><div class="metric-label">Negative Sentiment ({neg_m.get("numerator", 0):,}/{neg_m.get("denominator", 0):,})</div></div>', unsafe_allow_html=True)
+            with s4:
+                st.markdown(f'<div class="metric-card"><div class="metric-value" style="color:#6A1B9A;">{mix_m.get("percentage", 0)}%</div><div class="metric-label">Mixed Sentiment ({mix_m.get("numerator", 0):,}/{mix_m.get("denominator", 0):,})</div></div>', unsafe_allow_html=True)
+                
+            st.write("")
+            st.subheader("Sentiment Distribution by Major Purchase Barrier Category")
+            
+            barrier_sent_data = sent_summary.get("barrier_sentiment_breakdown", {})
+            barrier_rows = []
+            for b_name, b_info in barrier_sent_data.items():
+                dist = b_info.get("distribution", {})
+                barrier_rows.append({
+                    "Purchase Barrier": b_name.replace("_", " ").title(),
+                    "Total Barrier Records": b_info.get("total_barrier_records", 0),
+                    "Usable Denominator": b_info.get("usable_denominator", 0),
+                    "Positive (%)": dist.get("Positive", {}).get("percentage", 0.0),
+                    "Negative (%)": dist.get("Negative", {}).get("percentage", 0.0),
+                    "Neutral (%)": dist.get("Neutral", {}).get("percentage", 0.0),
+                    "Mixed (%)": dist.get("Mixed", {}).get("percentage", 0.0)
+                })
+            df_barrier_sent = pd.DataFrame(barrier_rows)
+            st.dataframe(df_barrier_sent, width="stretch")
+            
+            st.write("")
+            st.subheader("Representative Consumer Quotes by Sentiment & Barrier Combination")
+            
+            col_sel_sent, col_sel_barr = st.columns(2)
+            with col_sel_sent:
+                sel_sent_val = st.selectbox("Select Sentiment Filter:", ["Negative", "Positive", "Mixed", "Neutral"])
+            with col_sel_barr:
+                sel_barr_val = st.selectbox("Select Purchase Barrier Filter:", ["price", "quality_uncertainty", "delivery_concern", "return_concern", "size_uncertainty"])
+                
+            matched_quotes = df_data[
+                (df_data["sentiment_analysis"].apply(lambda s: s.get("sentiment_label") == sel_sent_val if isinstance(s, dict) else False)) &
+                (df_data["analytical_dimensions"].apply(lambda d: sel_barr_val in d.get("purchase_barriers", [])))
+            ]
+            
+            st.caption(f"Found {len(matched_quotes)} consumer quotes matching {sel_sent_val} Sentiment + {sel_barr_val.replace('_', ' ').title()} Barrier.")
+            
+            for idx, r_row in matched_quotes.head(4).iterrows():
+                s_lbl = r_row.get("sentiment_analysis", {}).get("sentiment_label", "Neutral")
+                s_score = r_row.get("sentiment_analysis", {}).get("sentiment_score", 0.0)
+                b_class = f"badge-{s_lbl.lower()}"
+                
+                st.markdown(f"""
+                    <div class="evidence-card">
+                        <span class="badge {b_class}">{s_lbl} ({s_score})</span>
+                        <strong>Channel:</strong> {r_row['source_channel'].upper()} | <strong>Brand:</strong> {r_row['platform_brand'].title()} | <strong>Intent:</strong> <span style="color:#FF3F6C; font-weight:700;">{r_row['primary_intent']}</span><br/>
+                        <div style="margin-top:8px; font-style:italic; color:#535766;">"{r_row['raw_text']}"</div>
+                    </div>
+                """, unsafe_allow_html=True)
+        
     # TAB 3: MULTI-CHANNEL EVIDENCE INSPECTOR
     with tab3:
         st.subheader("Multi-Channel Evidence Inspector")
@@ -293,10 +373,14 @@ def main():
             badge_class = f"badge-{chan}"
             intent_val = row.get("primary_intent", "N/A")
             segment_val = row.get("user_segment", "General User")
+            sent_info = row.get("sentiment_analysis", {})
+            s_label = sent_info.get("sentiment_label", "Neutral")
+            s_badge_class = f"badge-{s_label.lower()}"
             
             st.markdown(f"""
                 <div class="evidence-card">
                     <span class="badge {badge_class}">{chan}</span>
+                    <span class="badge {s_badge_class}">{s_label}</span>
                     <strong>Brand:</strong> {row['platform_brand'].title()} | <strong>Intent:</strong> <span style="color:#FF3F6C; font-weight:700;">{intent_val}</span> | <strong>Segment:</strong> {segment_val}<br/>
                     <div style="margin-top:8px; font-style:italic; color:#535766;">"{row['raw_text']}"</div>
                 </div>

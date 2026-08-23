@@ -48,6 +48,7 @@ def build_vector_index():
             "platform_brand": r.get("platform_brand"),
             "primary_intent": r.get("primary_intent"),
             "user_segment": r.get("user_segment"),
+            "sentiment_analysis": r.get("sentiment_analysis", {}),
             "analytical_dimensions": r.get("analytical_dimensions", {}),
             "evidence": r.get("evidence", {}),
             "raw_text": r.get("raw_text"),

@@ -1,6 +1,7 @@
 {
   "dataset_summary": {
     "total_records_all_brands": 6562,
+    "usable_sentiment_denominator": 5857,
     "myntra_friction_population_denominator": 969,
     "all_brands_wishlist_intent_denominator": 109
   },
@@ -127,5 +128,251 @@
       "population_name": "Myntra purchase-hesitation conversations",
       "formatted_text": "1.8% of Myntra purchase-hesitation conversations (17/969) mentioned better_fit_information."
     }
-  ]
+  ],
+  "sentiment_quantification": {
+    "overall_sentiment_distribution": {
+      "Positive": {
+        "numerator": 2810,
+        "denominator": 5857,
+        "percentage": 48.0,
+        "formatted_text": "48.0% (2810/5857) of usable records had positive sentiment."
+      },
+      "Neutral": {
+        "numerator": 1806,
+        "denominator": 5857,
+        "percentage": 30.8,
+        "formatted_text": "30.8% (1806/5857) of usable records had neutral sentiment."
+      },
+      "Negative": {
+        "numerator": 1180,
+        "denominator": 5857,
+        "percentage": 20.1,
+        "formatted_text": "20.1% (1180/5857) of usable records had negative sentiment."
+      },
+      "Mixed": {
+        "numerator": 61,
+        "denominator": 5857,
+        "percentage": 1.0,
+        "formatted_text": "1.0% (61/5857) of usable records had mixed sentiment."
+      }
+    },
+    "barrier_sentiment_breakdown": {
+      "lack_of_reviews": {
+        "total_barrier_records": 51,
+        "usable_denominator": 51,
+        "distribution": {
+          "Positive": {
+            "numerator": 38,
+            "denominator": 51,
+            "percentage": 74.5,
+            "formatted_text": "74.5% (38/51) of 'lack_of_reviews' friction records expressed positive sentiment."
+          },
+          "Negative": {
+            "numerator": 10,
+            "denominator": 51,
+            "percentage": 19.6,
+            "formatted_text": "19.6% (10/51) of 'lack_of_reviews' friction records expressed negative sentiment."
+          },
+          "Neutral": {
+            "numerator": 3,
+            "denominator": 51,
+            "percentage": 5.9,
+            "formatted_text": "5.9% (3/51) of 'lack_of_reviews' friction records expressed neutral sentiment."
+          }
+        }
+      },
+      "price": {
+        "total_barrier_records": 336,
+        "usable_denominator": 336,
+        "distribution": {
+          "Positive": {
+            "numerator": 159,
+            "denominator": 336,
+            "percentage": 47.3,
+            "formatted_text": "47.3% (159/336) of 'price' friction records expressed positive sentiment."
+          },
+          "Negative": {
+            "numerator": 128,
+            "denominator": 336,
+            "percentage": 38.1,
+            "formatted_text": "38.1% (128/336) of 'price' friction records expressed negative sentiment."
+          },
+          "Neutral": {
+            "numerator": 49,
+            "denominator": 336,
+            "percentage": 14.6,
+            "formatted_text": "14.6% (49/336) of 'price' friction records expressed neutral sentiment."
+          }
+        }
+      },
+      "quality_uncertainty": {
+        "total_barrier_records": 229,
+        "usable_denominator": 229,
+        "distribution": {
+          "Positive": {
+            "numerator": 172,
+            "denominator": 229,
+            "percentage": 75.1,
+            "formatted_text": "75.1% (172/229) of 'quality_uncertainty' friction records expressed positive sentiment."
+          },
+          "Negative": {
+            "numerator": 46,
+            "denominator": 229,
+            "percentage": 20.1,
+            "formatted_text": "20.1% (46/229) of 'quality_uncertainty' friction records expressed negative sentiment."
+          },
+          "Neutral": {
+            "numerator": 11,
+            "denominator": 229,
+            "percentage": 4.8,
+            "formatted_text": "4.8% (11/229) of 'quality_uncertainty' friction records expressed neutral sentiment."
+          }
+        }
+      },
+      "size_uncertainty": {
+        "total_barrier_records": 96,
+        "usable_denominator": 96,
+        "distribution": {
+          "Positive": {
+            "numerator": 58,
+            "denominator": 96,
+            "percentage": 60.4,
+            "formatted_text": "60.4% (58/96) of 'size_uncertainty' friction records expressed positive sentiment."
+          },
+          "Negative": {
+            "numerator": 24,
+            "denominator": 96,
+            "percentage": 25.0,
+            "formatted_text": "25.0% (24/96) of 'size_uncertainty' friction records expressed negative sentiment."
+          },
+          "Neutral": {
+            "numerator": 14,
+            "denominator": 96,
+            "percentage": 14.6,
+            "formatted_text": "14.6% (14/96) of 'size_uncertainty' friction records expressed neutral sentiment."
+          }
+        }
+      },
+      "availability": {
+        "total_barrier_records": 32,
+        "usable_denominator": 32,
+        "distribution": {
+          "Positive": {
+            "numerator": 14,
+            "denominator": 32,
+            "percentage": 43.8,
+            "formatted_text": "43.8% (14/32) of 'availability' friction records expressed positive sentiment."
+          },
+          "Negative": {
+            "numerator": 14,
+            "denominator": 32,
+            "percentage": 43.8,
+            "formatted_text": "43.8% (14/32) of 'availability' friction records expressed negative sentiment."
+          },
+          "Neutral": {
+            "numerator": 4,
+            "denominator": 32,
+            "percentage": 12.5,
+            "formatted_text": "12.5% (4/32) of 'availability' friction records expressed neutral sentiment."
+          }
+        }
+      },
+      "return_concern": {
+        "total_barrier_records": 143,
+        "usable_denominator": 143,
+        "distribution": {
+          "Negative": {
+            "numerator": 70,
+            "denominator": 143,
+            "percentage": 49.0,
+            "formatted_text": "49.0% (70/143) of 'return_concern' friction records expressed negative sentiment."
+          },
+          "Positive": {
+            "numerator": 56,
+            "denominator": 143,
+            "percentage": 39.2,
+            "formatted_text": "39.2% (56/143) of 'return_concern' friction records expressed positive sentiment."
+          },
+          "Neutral": {
+            "numerator": 15,
+            "denominator": 143,
+            "percentage": 10.5,
+            "formatted_text": "10.5% (15/143) of 'return_concern' friction records expressed neutral sentiment."
+          },
+          "Mixed": {
+            "numerator": 2,
+            "denominator": 143,
+            "percentage": 1.4,
+            "formatted_text": "1.4% (2/143) of 'return_concern' friction records expressed mixed sentiment."
+          }
+        }
+      },
+      "delivery_concern": {
+        "total_barrier_records": 185,
+        "usable_denominator": 185,
+        "distribution": {
+          "Negative": {
+            "numerator": 94,
+            "denominator": 185,
+            "percentage": 50.8,
+            "formatted_text": "50.8% (94/185) of 'delivery_concern' friction records expressed negative sentiment."
+          },
+          "Positive": {
+            "numerator": 75,
+            "denominator": 185,
+            "percentage": 40.5,
+            "formatted_text": "40.5% (75/185) of 'delivery_concern' friction records expressed positive sentiment."
+          },
+          "Neutral": {
+            "numerator": 15,
+            "denominator": 185,
+            "percentage": 8.1,
+            "formatted_text": "8.1% (15/185) of 'delivery_concern' friction records expressed neutral sentiment."
+          },
+          "Mixed": {
+            "numerator": 1,
+            "denominator": 185,
+            "percentage": 0.5,
+            "formatted_text": "0.5% (1/185) of 'delivery_concern' friction records expressed mixed sentiment."
+          }
+        }
+      },
+      "fit_uncertainty": {
+        "total_barrier_records": 17,
+        "usable_denominator": 17,
+        "distribution": {
+          "Positive": {
+            "numerator": 17,
+            "denominator": 17,
+            "percentage": 100.0,
+            "formatted_text": "100.0% (17/17) of 'fit_uncertainty' friction records expressed positive sentiment."
+          }
+        }
+      }
+    },
+    "postponed_purchase_sentiment": {
+      "total_postponed_records": 62,
+      "usable_denominator": 62,
+      "distribution": {
+        "Negative": {
+          "numerator": 31,
+          "denominator": 62,
+          "percentage": 50.0,
+          "formatted_text": "50.0% (31/62) of postponed purchase records expressed negative sentiment."
+        },
+        "Positive": {
+          "numerator": 29,
+          "denominator": 62,
+          "percentage": 46.8,
+          "formatted_text": "46.8% (29/62) of postponed purchase records expressed positive sentiment."
+        },
+        "Neutral": {
+          "numerator": 2,
+          "denominator": 62,
+          "percentage": 3.2,
+          "formatted_text": "3.2% (2/62) of postponed purchase records expressed neutral sentiment."
+        }
+      }
+    }
+  }
 }

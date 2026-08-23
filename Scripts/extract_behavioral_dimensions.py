@@ -5,8 +5,67 @@ import json
 import re
 import pandas as pd
 
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 if sys.stdout.encoding.lower() != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
+
+# Initialize VADER sentiment analyzer offline/quietly
+try:
+    nltk.data.find('sentiment/vader_lexicon.zip')
+except LookupError:
+    nltk.download('vader_lexicon', quiet=True)
+
+_sia = SentimentIntensityAnalyzer()
+
+def analyze_sentiment_vader(text):
+    """Calculates deterministic VADER sentiment scores without fabricating data for empty/unusable text."""
+    if text is None:
+        return {
+            "sentiment_label": "Unknown",
+            "sentiment_score": None,
+            "sentiment_confidence": None,
+            "components": {"neg": 0.0, "neu": 0.0, "pos": 0.0, "compound": 0.0}
+        }
+        
+    text_str = str(text).strip()
+    if len(text_str) < 5 or text_str.lower() in ["nan", "null", "none"]:
+        return {
+            "sentiment_label": "Unknown",
+            "sentiment_score": None,
+            "sentiment_confidence": None,
+            "components": {"neg": 0.0, "neu": 0.0, "pos": 0.0, "compound": 0.0}
+        }
+        
+    scores = _sia.polarity_scores(text_str)
+    compound = round(scores["compound"], 4)
+    pos = round(scores["pos"], 4)
+    neg = round(scores["neg"], 4)
+    neu = round(scores["neu"], 4)
+    
+    confidence = round(max(pos, neu, neg), 2)
+    
+    if pos >= 0.15 and neg >= 0.15 and -0.40 <= compound <= 0.40:
+        label = "Mixed"
+    elif compound >= 0.05:
+        label = "Positive"
+    elif compound <= -0.05:
+        label = "Negative"
+    else:
+        label = "Neutral"
+        
+    return {
+        "sentiment_label": label,
+        "sentiment_score": compound,
+        "sentiment_confidence": confidence,
+        "components": {
+            "neg": neg,
+            "neu": neu,
+            "pos": pos,
+            "compound": compound
+        }
+    }
 
 # Negation terms for 4-word window check (Edge Case 5.1)
 NEGATION_TERMS = {'not', "don't", 'dont', 'never', 'no', "wouldn't", 'wouldnt', 'cannot', "can't", 'cant', 'without', 'hardly', 'barely'}
@@ -214,6 +273,9 @@ def process_single_file(file_path):
         else:
             segment = "general_shopper"
             
+        # Calculate sentiment analysis (UNDERSTAND stage)
+        sentiment_info = analyze_sentiment_vader(processed_text)
+        
         rec = {
             "record_id": f"{basename}_{idx}",
             "source_file": basename,
@@ -223,6 +285,7 @@ def process_single_file(file_path):
             "processed_text_with_context": processed_text[:350],
             "primary_intent": primary_intent,
             "user_segment": segment,
+            "sentiment_analysis": sentiment_info,
             "analytical_dimensions": {
                 "user_behavior": dims["user_behavior"],
                 "purchase_stage": stage,

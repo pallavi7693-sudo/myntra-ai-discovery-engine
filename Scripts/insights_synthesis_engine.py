@@ -348,8 +348,11 @@ class GroundedSynthesisEngine:
             evidence_text = ""
             for ev in evidence_list:
                 clean_context = ev['evidence_quote'].encode('ascii', 'ignore').decode('ascii')
+                sent_data = ev.get('sentiment_analysis', {})
+                sent_lbl = sent_data.get('sentiment_label', 'Unknown')
+                sent_score = sent_data.get('sentiment_score', 'N/A')
                 evidence_text += (
-                    f"• **Channel**: {ev['source_channel'].upper()} ({ev['platform_brand'].title()}) | **Segment**: {ev['user_segment']}\n"
+                    f"• **Channel**: {ev['source_channel'].upper()} ({ev['platform_brand'].title()}) | **Segment**: {ev['user_segment']} | **Sentiment**: {sent_lbl} (Score: {sent_score})\n"
                     f"  **Full Conversation Context**: \"{clean_context}\"\n\n"
                 )
             report_sections.append(f"--------------------------------------------------\n\nREPRESENTATIVE GROUNDED EVIDENCE & FULL CONVERSATION CONTEXT\n\n{evidence_text}")
