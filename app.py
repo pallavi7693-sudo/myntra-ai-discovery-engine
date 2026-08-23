@@ -138,7 +138,14 @@ def load_dataset():
     path = os.path.join(BASE_DIR, "Processed Data", "myntra_multidimensional_enriched.json")
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
-    return pd.DataFrame(data)
+    df = pd.DataFrame(data)
+    if "sentiment_analysis" not in df.columns:
+        from extract_behavioral_dimensions import analyze_sentiment_vader
+        df["sentiment_analysis"] = df.apply(
+            lambda r: analyze_sentiment_vader(r.get("processed_text_with_context", r.get("raw_text", ""))),
+            axis=1
+        )
+    return df
 
 def main():
     st.title("🛍️ Myntra Consumer Discovery Engine")
@@ -146,6 +153,13 @@ def main():
     
     synthesizer, retriever = load_engines()
     df_data = load_dataset()
+    
+    if "sentiment_analysis" not in df_data.columns:
+        from extract_behavioral_dimensions import analyze_sentiment_vader
+        df_data["sentiment_analysis"] = df_data.apply(
+            lambda r: analyze_sentiment_vader(r.get("processed_text_with_context", r.get("raw_text", ""))),
+            axis=1
+        )
     
     total_records = len(df_data)
     myntra_friction_df = df_data[(df_data["platform_brand"] == "myntra") & (df_data.apply(lambda r: len(r['analytical_dimensions']['purchase_barriers']) > 0 or r['analytical_dimensions']['purchase_status'] == 'postponed', axis=1))]
