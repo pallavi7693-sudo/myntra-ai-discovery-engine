@@ -43,7 +43,7 @@ flowchart TD
     end
 
     subgraph Intelligence & Interface Layer
-        M8 & M9 --> M10[10. Grounded LLM Synthesis Engine]
+        M8 & M9 --> M10[10. Grounded Insights Synthesis Engine]
         M10 --> M11[11. Opportunity Matrix & Scoring]
         M11 --> M12[12. Discovery Engine UI / Dashboard]
     end
@@ -62,7 +62,7 @@ flowchart TD
 | **7** | **Vector Store & Index** | Store embeddings + channel metadata for hybrid semantic retrieval. | ChromaDB / Vector Store |
 | **8** | **Quantitative Engine** | Calculate exact numerators, denominators, shares, and comparative distributions across channels. | Analytical matrices |
 | **9** | **Evidence Retriever** | Retrieve top representative cross-channel conversation/review passages. | Filtered evidence snippets |
-| **10** | **LLM Synthesis Engine** | Generate structured business insights adhering strictly to retrieved context. | Grounded response payload |
+| **10** | **Insights Synthesis Engine** | Generate structured business insights adhering strictly to retrieved context. | Grounded response payload |
 | **11** | **Opportunity Scorer** | Rank and score opportunity areas based on frequency and business conversion impact. | Scored opportunity matrix |
 | **12** | **User Interface** | Interactive analytical discovery interface for product managers & strategists. | Streamlit / Web UI |
 
@@ -198,7 +198,7 @@ gantt
 - **Stage 1 (Completed)**: Multi-dataset quality & label audit across all 12 CSV datasets (5,706 rows). See [data_validation_audit_report.md](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/docs/data_validation_audit_report.md).
 - **Stage 2 (Completed)**: Multi-dimensional behavioral signal extraction & denominator-scoped quantification engine. Generated [myntra_multidimensional_enriched.json](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/Processed%20Data/myntra_multidimensional_enriched.json) (5,706 enriched records, 100% preservation of 634 original `primary_intent` labels).
 - **Stage 3 (Completed)**: Vector Indexing & Hybrid Multi-Channel Retrieval Engine. Generated [vector_index.json](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/Processed%20Data/vector_index.json) & [Scripts/hybrid_retrieval_engine.py](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/Scripts/hybrid_retrieval_engine.py) (Indexed 5,706 records with all 8 safeguards).
-- **Stage 4 (Completed)**: Grounded Synthesis & Weighted Opportunity Ranking Engine. Generated [Scripts/opportunity_scoring_engine.py](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/Scripts/opportunity_scoring_engine.py), [Scripts/llm_synthesis_engine.py](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/Scripts/llm_synthesis_engine.py), and [docs/stage4_synthesis_report.md](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/docs/stage4_synthesis_report.md).
+- **Stage 4 (Completed)**: Grounded Synthesis & Weighted Opportunity Ranking Engine. Generated [Scripts/opportunity_scoring_engine.py](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/Scripts/opportunity_scoring_engine.py), [Scripts/insights_synthesis_engine.py](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/Scripts/insights_synthesis_engine.py), and [docs/stage4_synthesis_report.md](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/docs/stage4_synthesis_report.md).
 - **Stage 5 (Completed)**: Interactive Discovery Web Dashboard (`app.py` running on `http://localhost:8501`). See [docs/stage5_ui_spec.md](file:///c:/Users/palla/OneDrive/Desktop/Myntra%20Project/docs/stage5_ui_spec.md).
 
 

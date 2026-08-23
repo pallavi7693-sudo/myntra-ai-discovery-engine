@@ -2,7 +2,7 @@
 
 > **Module Target:** Interactive Streamlit Discovery Dashboard  
 > **Application File:** `app.py`  
-> **Backend Integration:** `Scripts/llm_synthesis_engine.py`, `Scripts/opportunity_scoring_engine.py`, `Scripts/hybrid_retrieval_engine.py`  
+> **Backend Integration:** `Scripts/insights_synthesis_engine.py`, `Scripts/opportunity_scoring_engine.py`, `Scripts/hybrid_retrieval_engine.py`  
 > **Design Theme:** Dark Mode with HSL accents, Glassmorphic Cards, and Modern Typography.
 
 ---

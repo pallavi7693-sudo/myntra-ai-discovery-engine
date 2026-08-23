@@ -7,7 +7,7 @@ import streamlit as st
 # Add Scripts directory to sys.path
 sys.path.append(os.path.join(os.path.dirname(__file__), "Scripts"))
 
-from llm_synthesis_engine import GroundedSynthesisEngine
+from insights_synthesis_engine import GroundedSynthesisEngine
 from opportunity_scoring_engine import compute_opportunity_matrix
 from hybrid_retrieval_engine import HybridRetrievalEngine
 
@@ -138,7 +138,7 @@ def load_dataset():
 
 def main():
     st.title("🛍️ Myntra Consumer Discovery Engine")
-    st.caption("AI-Powered Consumer Behavioral Insight & Purchase Friction Analytics")
+    st.caption("AI-Powered Discovery of Wishlist-to-Purchase Friction")
     
     synthesizer, retriever = load_engines()
     df_data = load_dataset()

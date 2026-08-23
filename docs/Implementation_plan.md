@@ -21,7 +21,7 @@ This document details the architecture, component layout, aesthetic design, and 
 ```mermaid
 flowchart TD
     subgraph Core Stage 4 Engines
-        S1[Scripts/llm_synthesis_engine.py] --> APP[app.py Streamlit App]
+        S1[Scripts/insights_synthesis_engine.py] --> APP[app.py Streamlit App]
         O1[Scripts/opportunity_scoring_engine.py] --> APP
         R1[Scripts/hybrid_retrieval_engine.py] --> APP
     end

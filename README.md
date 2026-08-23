@@ -184,7 +184,7 @@ Myntra Project/
 │   ├── hybrid_retrieval_engine.py        # RAG Vector Retrieval Engine
 │   ├── quantification_engine.py         # Scoped Quantification Analyzer
 │   ├── opportunity_scoring_engine.py     # Weighted Matrix Calculator
-│   ├── llm_synthesis_engine.py           # Grounded Business Insight Synthesizer
+│   ├── insights_synthesis_engine.py      # Grounded Business Insight Synthesizer
 │   └── audit_datasets.py                 # Data Quality Auditor
 └── docs/                                 # Technical Architecture & Audits
     ├── architecture.md                   # Complete Architecture Specification
