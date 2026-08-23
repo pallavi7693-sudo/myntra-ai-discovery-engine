@@ -51,19 +51,19 @@ The system is built on a **12-module decoupled architecture** to maintain strict
 [1. Multi-Source Ingestion & Deduplication] ──► (14 Datasets / 6,562 Rows)
            │
            ▼
-[2. Intent Labeling & Behavioral Signal Extraction]
+[2. UNDERSTAND: Intent Labeling, Behavioral Signals & VADER Sentiment]
            │
            ▼
-[3. Vector Embedding Matrix (6562, 5000) TF-IDF]
+[3. RETRIEVE: Vector Embedding Matrix (6562, 5000) & RAG Engine]
            │
            ▼
-[4. Scoped Quantification Engine & Scorer]
+[4. QUANTIFY: Denominator-Scoped Metrics & Opportunity Scoring]
            │
            ▼
-[5. Grounded RAG Retrieval Engine] ──► (Excludes 'Other', Prioritizes Wishlist/Price-Drop)
+[5. UNMET NEED DETECTION: Empirical Gap & Source Coverage Analyzer]
            │
            ▼
-[6. Streamlit Interactive Discovery Engine UI] (http://localhost:8501)
+[6. SYNTHESIS & UI: Interactive Discovery Dashboard] (http://localhost:8501)
 ```
 
 ---

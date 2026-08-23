@@ -15,7 +15,8 @@ DOMAIN_KEYWORDS = [
     "cart", "review", "rating", "outfit", "style", "fashion", "brand", "clothing",
     "apparel", "dress", "shirt", "shoe", "shoes", "delay", "wait", "postpone", "hesitat",
     "barrier", "friction", "recommend", "compare", "shortlist", "bookmark", "save", "saving",
-    "eors", "bff", "ekart", "haul", "try on", "reddit", "youtube", "app", "store"
+    "eors", "bff", "ekart", "haul", "try on", "reddit", "youtube", "app", "store",
+    "unmet", "need", "needs", "gap", "emerge", "conversation", "conversations"
 ]
 
 MISSING_ATTRIBUTES = [
@@ -107,8 +108,12 @@ class GroundedSynthesisEngine:
             )
         elif any(kw in q_clean for kw in ["unmet", "need", "opportunity"]):
             return (
-                "The top 3 unmet consumer needs across platform conversations are: 1) Transparent price-drop notifications and historical price trends, "
-                "2) Verified buyer fabric feel and transparency photos, and 3) Hassle-free size exchange guarantees without return fees."
+                "Across multi-channel consumer conversations, five primary unmet needs emerge consistently:\n"
+                "1) Price & Value Confidence (34.7% of Myntra hesitation records [336/969] across 9 datasets) — Need transparent price history trends and real-time sale drop nudges;\n"
+                "2) Tactile Quality & Fabric Feel Verification (23.6% [229/969] across 9 datasets) — Need unedited fabric texture details and real wearer feedback;\n"
+                "3) Predictable Delivery Timelines (19.1% [185/969] across 8 datasets) — Need guaranteed delivery date commitments;\n"
+                "4) Risk-Free Return & Exchange Assurance (14.8% [143/969] across 6 datasets) — Need fee-free size exchanges;\n"
+                "5) Fit & Sizing Confidence (11.6% [112/969] across 6 datasets) — Need confidence that wishlisted fashion items will fit properly before purchase."
             )
         elif evidence_list and len(evidence_list) >= 2:
             return (
@@ -232,12 +237,22 @@ class GroundedSynthesisEngine:
                 f"   {formatted_txt}"
             )
         elif any(kw in q_clean for kw in ["unmet", "need", "opportunity"]):
+            unmet_json_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Processed Data", "unmet_needs_results.json")
+            need_lines = []
+            if os.path.exists(unmet_json_path):
+                with open(unmet_json_path, "r", encoding="utf-8") as uf:
+                    udata = json.load(uf)
+                for n in udata.get("ranked_unmet_needs", []):
+                    need_lines.append(
+                        f"   #{n['rank']} {n['title']} [{n['strength']} Strength]:\n"
+                        f"     - Unmet Need Statement: \"{n['statement']}\"\n"
+                        f"     - Empirical Evidence: {n['share_pct']}% ({n['evidence_count']}/{n['hesitation_denominator']} Myntra hesitation records) across {n['unique_datasets_count']} datasets & {n['unique_channels_count']} channels\n"
+                        f"     - Related Barrier: {n['associated_purchase_barrier']} | Behavior: {n['associated_purchase_behavior']}"
+                    )
+            need_str = "\n\n".join(need_lines) if need_lines else "   - Loading unmet needs..."
             return (
-                f"1. Unmet Consumer Need Frequency Breakdown (Denominator: {hesitation_denom} Myntra records):\n"
-                f"   - Transparent Price History & Sale Drop Nudges: {barrier_map['price']['pct']}% ({barrier_map['price']['num']} / {hesitation_denom})\n"
-                f"   - Unedited Fabric Texture & Real Wearer Photo Reviews: {barrier_map['quality_uncertainty']['pct']}% ({barrier_map['quality_uncertainty']['num']} / {hesitation_denom})\n"
-                f"   - Flexible Size Exchange & Fee-Free Return Guarantee: {barrier_map['return_concern']['pct']}% ({barrier_map['return_concern']['num']} / {hesitation_denom})\n"
-                f"   - AI Fit Recommendation & Body Dimension Assistant: {barrier_map['size_uncertainty']['pct']}% ({barrier_map['size_uncertainty']['num']} / {hesitation_denom})\n\n"
+                f"1. Ranked Empirical Unmet Needs Breakdown (Denominator: {hesitation_denom} Myntra purchase-hesitation records):\n\n"
+                f"{need_str}\n\n"
                 f"2. Query Scoped Filter Result:\n"
                 f"   {formatted_txt}"
             )

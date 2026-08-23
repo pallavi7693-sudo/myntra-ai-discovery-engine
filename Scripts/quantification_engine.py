@@ -172,6 +172,11 @@ def run_quantification_analysis():
     print(f"QUANTIFICATION ANALYSIS COMPLETE (MYNTRA-SCOPED FRICTION)")
     print(f"Saved results to: {output_report_path}")
     print("==================================================")
+    
+    # Trigger UNMET NEED DETECTION pipeline stage
+    from unmet_needs_engine import detect_unmet_needs
+    detect_unmet_needs(json_path)
+    
     return results_payload
 
 if __name__ == "__main__":

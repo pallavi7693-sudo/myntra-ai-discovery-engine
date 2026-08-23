@@ -329,6 +329,42 @@ def main():
                         <div style="margin-top:8px; font-style:italic; color:#535766;">"{r_row['raw_text']}"</div>
                     </div>
                 """, unsafe_allow_html=True)
+                
+        st.divider()
+        st.subheader("💡 Ranked Unmet Consumer Needs (Cross-Dataset Discovery)")
+        st.markdown("Recurring gaps between **user purchase goals** and **current platform experience** detected deterministically across multi-channel touchpoints.")
+        
+        unmet_json_path = os.path.join(BASE_DIR, "Processed Data", "unmet_needs_results.json")
+        if os.path.exists(unmet_json_path):
+            with open(unmet_json_path, "r", encoding="utf-8") as uf:
+                unmet_data = json.load(uf)
+                
+            for need in unmet_data.get("ranked_unmet_needs", []):
+                str_color = "#2E7D32" if need["strength"] == "High" else ("#EF6C00" if need["strength"] == "Medium" else "#616161")
+                
+                with st.expander(f"#{need['rank']} {need['title']} — [{need['strength']} Strength | {need['share_pct']}% Share]", expanded=(need['rank'] <= 2)):
+                    st.markdown(f"**Unmet Need Statement**: *\"{need['statement']}\"*")
+                    
+                    u1, u2, u3, u4 = st.columns(4)
+                    with u1:
+                        st.metric("Evidence Records", f"{need['evidence_count']:,}", f"{need['share_pct']}% share")
+                    with u2:
+                        st.metric("Source Coverage", f"{need['unique_datasets_count']} Datasets", f"{need['unique_channels_count']} Channels")
+                    with u3:
+                        st.metric("Associated Barrier", need['associated_purchase_barrier'])
+                    with u4:
+                        st.metric("Associated Behavior", "Purchase Postponed")
+                        
+                    st.markdown(f"**Associated User Outcome**: {need['associated_user_outcome']}")
+                    st.markdown("**Representative Verbatim Consumer Evidence:**")
+                    
+                    for q in need.get("representative_evidence", []):
+                        st.markdown(f"""
+                            <div style="background:#F9F9FB; border-left:3px solid #FF3F6C; padding:10px; border-radius:6px; margin-bottom:8px; font-style:italic; font-size:13px;">
+                                "{q['raw_text']}"<br/>
+                                <span style="font-size:11px; color:#6C757D; font-style:normal;">— Source: {q['source_file']} ({q['source_channel'].upper()}) | Sentiment: {q['sentiment_label']}</span>
+                            </div>
+                        """, unsafe_allow_html=True)
         
     # TAB 3: MULTI-CHANNEL EVIDENCE INSPECTOR
     with tab3:

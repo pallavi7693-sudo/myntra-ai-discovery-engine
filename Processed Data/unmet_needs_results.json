@@ -1,0 +1,431 @@
+{
+  "summary": {
+    "total_unmet_needs_detected": 7,
+    "myntra_friction_denominator": 969,
+    "total_dataset_records": 6562
+  },
+  "ranked_unmet_needs": [
+    {
+      "unmet_need_id": "price_value_confidence",
+      "title": "Price & Value Confidence",
+      "statement": "Need transparent price history trends and real-time sale drop nudges to verify optimal purchase timing before checkout.",
+      "strength": "High",
+      "evidence_count": 336,
+      "hesitation_denominator": 969,
+      "share_pct": 34.7,
+      "total_corpus_count": 6562,
+      "total_share_pct": 5.1,
+      "unique_datasets_count": 9,
+      "unique_datasets": [
+        "myntra_playstore.csv",
+        "reddit_myntra_additional_cleaned.csv",
+        "reddit_myntra_additional_labeled.csv",
+        "reddit_myntra_cleaned.csv",
+        "reddit_myntra_labeled.csv",
+        "youtube_comments_filtered.csv",
+        "youtube_comments_filtered_real.csv",
+        "youtube_comments_real.csv",
+        "youtube_comments_test.csv"
+      ],
+      "unique_channels_count": 3,
+      "unique_channels": [
+        "playstore",
+        "reddit",
+        "youtube"
+      ],
+      "associated_purchase_barrier": "Price",
+      "associated_purchase_barrier_raw": "price",
+      "associated_purchase_behavior": "Purchase Postponed / Cart Waiting",
+      "supporting_behavioral_signals": [
+        "wishlist",
+        "purchase_postponed",
+        "price_history",
+        "discount_information"
+      ],
+      "associated_user_outcome": "Prevents deal-hesitation waiting loops, reduces cart postponement, and triggers immediate buy action during price drops.",
+      "representative_evidence": [
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Huda palettes especially the pastel ones are at 50% for like 700 rs! Seems like a great pick if ur into those shades.",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "I was seeing this many times. One day it\u2019s allowing, I add to cart and then next day it\u2019s undeliverable. \n\nThen I did a test with several cities, and it show delivery to one not that rest. Weird shit.",
+          "primary_intent": "price_drop",
+          "sentiment_label": "Negative"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Wasted Rs.29\n\n![gif](giphy|p8Uw3hzdAE2dO)",
+          "primary_intent": "other",
+          "sentiment_label": "Negative"
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "unmet_need_id": "quality_material_transparency",
+      "title": "Tactile Quality & Fabric Feel Verification",
+      "statement": "Need unedited fabric texture details and real wearer feedback to verify material durability and opacity before buying.",
+      "strength": "High",
+      "evidence_count": 229,
+      "hesitation_denominator": 969,
+      "share_pct": 23.6,
+      "total_corpus_count": 6562,
+      "total_share_pct": 3.5,
+      "unique_datasets_count": 9,
+      "unique_datasets": [
+        "myntra_playstore.csv",
+        "reddit_myntra_additional_cleaned.csv",
+        "reddit_myntra_additional_labeled.csv",
+        "reddit_myntra_cleaned.csv",
+        "reddit_myntra_labeled.csv",
+        "youtube_comments_filtered.csv",
+        "youtube_comments_filtered_real.csv",
+        "youtube_comments_real.csv",
+        "youtube_comments_test.csv"
+      ],
+      "unique_channels_count": 3,
+      "unique_channels": [
+        "playstore",
+        "reddit",
+        "youtube"
+      ],
+      "associated_purchase_barrier": "Quality Uncertainty",
+      "associated_purchase_barrier_raw": "quality_uncertainty",
+      "associated_purchase_behavior": "Purchase Postponed / Cart Waiting",
+      "supporting_behavioral_signals": [
+        "product_research",
+        "reviews",
+        "quality"
+      ],
+      "associated_user_outcome": "Overcomes online fabric texture ambiguity and builds high consumer brand trust.",
+      "representative_evidence": [
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Be careful with the HUDA beauty palettes you buy, I think all the small ones are made in China (as opposed to the big ones like Mercury retrograde which are from Italy) so they're significantly worse in quality and there are loads of complaints about nykaa selling fakes during their big sales",
+          "primary_intent": "other",
+          "sentiment_label": "Negative"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "My friend has used the purple one and she's happy with that particular color. Point to also note she really loves purple as a color as well. So shes usually buying outfits in that shade. So I thin she used the palette well. Maybe see the eyeshadow swatches and colors and how it can work for you",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "I got a cross body bag and Jackets from H&M. Their jacket quality is good.",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "unmet_need_id": "delivery_fulfillment_predictability",
+      "title": "Predictable Delivery Timelines & Date Commitments",
+      "statement": "Need guaranteed delivery date commitments and courier dispatch tracking for time-sensitive occasion wear.",
+      "strength": "High",
+      "evidence_count": 185,
+      "hesitation_denominator": 969,
+      "share_pct": 19.1,
+      "total_corpus_count": 6562,
+      "total_share_pct": 2.8,
+      "unique_datasets_count": 8,
+      "unique_datasets": [
+        "myntra_playstore.csv",
+        "reddit_myntra_additional_cleaned.csv",
+        "reddit_myntra_additional_labeled.csv",
+        "reddit_myntra_cleaned.csv",
+        "reddit_myntra_labeled.csv",
+        "youtube_comments_filtered.csv",
+        "youtube_comments_real.csv",
+        "youtube_comments_test.csv"
+      ],
+      "unique_channels_count": 3,
+      "unique_channels": [
+        "playstore",
+        "reddit",
+        "youtube"
+      ],
+      "associated_purchase_barrier": "Delivery Concern",
+      "associated_purchase_barrier_raw": "delivery_concern",
+      "associated_purchase_behavior": "Purchase Postponed / Cart Waiting",
+      "supporting_behavioral_signals": [
+        "purchase_postponed",
+        "delivery"
+      ],
+      "associated_user_outcome": "Eliminates shipping delay anxiety and prevents cart abandonment for event-based purchases.",
+      "representative_evidence": [
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "I was seeing this many times. One day it\u2019s allowing, I add to cart and then next day it\u2019s undeliverable. \n\nThen I did a test with several cities, and it show delivery to one not that rest. Weird shit.",
+          "primary_intent": "price_drop",
+          "sentiment_label": "Negative"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "What is CIBIL Score?\n\nCIBIL score is a 3-digit number between 300 to 900. It is like your financial report card. Banks check it before giving you a loan or credit card.\n\nWhy is a good CIBIL score important? (750+ is good)\n\n1. Loans get approved quickly.\n2. You get lower interest rates.\n3. You can ge",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Thank you for literally saving me with this wisdom. It looked like a grown up version of my beloved double dare from holo taco and yesterday my fish brain said pretty and then got dragged into a shift till a minute after the sale ended. Knowing how similar the mooncat is that definitely might be the",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "unmet_need_id": "return_exchange_frictionless",
+      "title": "Risk-Free Return & Fee-Free Size Exchange Assurance",
+      "statement": "Need clear, hassle-free return windows and free first size-exchange guarantees to mitigate post-order sizing regret.",
+      "strength": "High",
+      "evidence_count": 143,
+      "hesitation_denominator": 969,
+      "share_pct": 14.8,
+      "total_corpus_count": 6562,
+      "total_share_pct": 2.2,
+      "unique_datasets_count": 6,
+      "unique_datasets": [
+        "myntra_playstore.csv",
+        "reddit_myntra_additional_cleaned.csv",
+        "reddit_myntra_additional_labeled.csv",
+        "reddit_myntra_cleaned.csv",
+        "reddit_myntra_labeled.csv",
+        "youtube_comments_real.csv"
+      ],
+      "unique_channels_count": 3,
+      "unique_channels": [
+        "playstore",
+        "reddit",
+        "youtube"
+      ],
+      "associated_purchase_barrier": "Return Concern",
+      "associated_purchase_barrier_raw": "return_concern",
+      "associated_purchase_behavior": "Purchase Postponed / Cart Waiting",
+      "supporting_behavioral_signals": [
+        "recommendation_seeking",
+        "purchase_postponed"
+      ],
+      "associated_user_outcome": "Lowers purchasing risk for unfamiliar fashion brands and sizing-sensitive apparel.",
+      "representative_evidence": [
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Pls tell where I can get modest and classy plus size dresses online in India? Should be ideal for Delhi summers and have good return/exchange policy?\n\nlol may be I\u2019m asking for too much.\n\nPreference- mid length or ankle length.",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Thank you so much! Is there anything you\u2019d like in return?",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Me also got these from flipkart but these are not very comfy for me. I think i need a size up but its not available now. Thinking whether i should return them or sell them.\n\nhttps://preview.redd.it/nu8mstgjwhkh1.jpeg?width=2252&format=pjpg&auto=webp&s=368bef057f09029162ba3e586840696038b6e24e",
+          "primary_intent": "other",
+          "sentiment_label": "Neutral"
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "unmet_need_id": "fit_size_confidence",
+      "title": "Fit & Sizing Confidence Before Purchase",
+      "statement": "Need greater confidence that a wishlisted fashion product will fit properly before checkout to avoid return hassle.",
+      "strength": "High",
+      "evidence_count": 112,
+      "hesitation_denominator": 969,
+      "share_pct": 11.6,
+      "total_corpus_count": 6562,
+      "total_share_pct": 1.7,
+      "unique_datasets_count": 6,
+      "unique_datasets": [
+        "myntra_playstore.csv",
+        "reddit_myntra_additional_cleaned.csv",
+        "reddit_myntra_additional_labeled.csv",
+        "reddit_myntra_cleaned.csv",
+        "reddit_myntra_labeled.csv",
+        "youtube_comments_real.csv"
+      ],
+      "unique_channels_count": 3,
+      "unique_channels": [
+        "playstore",
+        "reddit",
+        "youtube"
+      ],
+      "associated_purchase_barrier": "Size Uncertainty",
+      "associated_purchase_barrier_raw": "size_uncertainty",
+      "associated_purchase_behavior": "Purchase Postponed / Cart Waiting",
+      "supporting_behavioral_signals": [
+        "wishlist",
+        "purchase_postponed",
+        "product_research",
+        "size_information"
+      ],
+      "associated_user_outcome": "Reduces brand sizing doubts, eliminates size-swap returns, and accelerates wishlist-to-checkout conversion.",
+      "representative_evidence": [
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Be careful with the HUDA beauty palettes you buy, I think all the small ones are made in China (as opposed to the big ones like Mercury retrograde which are from Italy) so they're significantly worse in quality and there are loads of complaints about nykaa selling fakes during their big sales",
+          "primary_intent": "other",
+          "sentiment_label": "Negative"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Pls tell where I can get modest and classy plus size dresses online in India? Should be ideal for Delhi summers and have good return/exchange policy?\n\nlol may be I\u2019m asking for too much.\n\nPreference- mid length or ankle length.",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "H&M Teddy Jacket http://www.myntra.com/mailers/topwear/h&m/h&m-teddy-jacket/28354788/buy?utm_source=social_share_pdp&utm_medium=deeplink&utm_campaign=social_share_pdp_deeplink on Myntra\n\nH&M Teddy Jackets http://www.myntra.com/mailers/topwear/h&m/h&m-teddy-jackets/30760731/buy?utm_source=social_shar",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "unmet_need_id": "social_proof_unfiltered",
+      "title": "Unedited Real-Wearer Photos & Try-On Social Proof",
+      "statement": "Need unedited real customer try-on photos and body-dimension-matched reviews to visualize actual product appearance.",
+      "strength": "Medium",
+      "evidence_count": 51,
+      "hesitation_denominator": 969,
+      "share_pct": 5.3,
+      "total_corpus_count": 6562,
+      "total_share_pct": 0.8,
+      "unique_datasets_count": 9,
+      "unique_datasets": [
+        "myntra_playstore.csv",
+        "reddit_myntra_additional_cleaned.csv",
+        "reddit_myntra_additional_labeled.csv",
+        "reddit_myntra_cleaned.csv",
+        "reddit_myntra_labeled.csv",
+        "youtube_comments_filtered.csv",
+        "youtube_comments_filtered_real.csv",
+        "youtube_comments_real.csv",
+        "youtube_comments_test.csv"
+      ],
+      "unique_channels_count": 3,
+      "unique_channels": [
+        "playstore",
+        "reddit",
+        "youtube"
+      ],
+      "associated_purchase_barrier": "Lack Of Reviews",
+      "associated_purchase_barrier_raw": "lack_of_reviews",
+      "associated_purchase_behavior": "Purchase Postponed / Cart Waiting",
+      "supporting_behavioral_signals": [
+        "product_research",
+        "reviews",
+        "styling"
+      ],
+      "associated_user_outcome": "Fills critical social proof gaps for newly launched items lacking customer feedback.",
+      "representative_evidence": [
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Thanks for the feedback \ud83d\ude0a",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "For style advice, outfit help, item finding, store reviews (websites, apps, Instagram shops), and more. - &#x1f4ac; **[Join IFA Discord Here](https://discord.gg/y46qHYQd2u)** \n\n*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compos",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Thanks for posting, /u/lazerbrains_m! A quick reminder: If this is a **nail image**, you must provide a complete product list within **1 hour** of posting. Posts without a complete product list will be removed. Lists must include full names of brands and color names or numbers. [More info here.](htt",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "unmet_need_id": "restock_availability_visibility",
+      "title": "Restock Alerts & Size Availability Nudges",
+      "statement": "Need real-time size restock notifications and inventory availability nudges for wishlisted out-of-stock items.",
+      "strength": "Medium",
+      "evidence_count": 32,
+      "hesitation_denominator": 969,
+      "share_pct": 3.3,
+      "total_corpus_count": 6562,
+      "total_share_pct": 0.5,
+      "unique_datasets_count": 6,
+      "unique_datasets": [
+        "reddit_myntra_additional_cleaned.csv",
+        "reddit_myntra_additional_labeled.csv",
+        "reddit_myntra_cleaned.csv",
+        "reddit_myntra_labeled.csv",
+        "youtube_comments_filtered_real.csv",
+        "youtube_comments_real.csv"
+      ],
+      "unique_channels_count": 2,
+      "unique_channels": [
+        "reddit",
+        "youtube"
+      ],
+      "associated_purchase_barrier": "Availability",
+      "associated_purchase_barrier_raw": "availability",
+      "associated_purchase_behavior": "Purchase Postponed / Cart Waiting",
+      "supporting_behavioral_signals": [
+        "wishlist",
+        "purchase_postponed"
+      ],
+      "associated_user_outcome": "Recaptures lost demand for out-of-stock sizes when inventory is replenished.",
+      "representative_evidence": [
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Only the rose gold is expiring in April 2022. And I think mercury retrograde in September 2022. Rest all are expiring in 2023.\n\nAlso, the expiry date mentioned on the website is the earliest of all the products in stock, but expiry date of your product could be later. I ordered desert dusk 2 years a",
+          "primary_intent": "other",
+          "sentiment_label": "Neutral"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Is this a good buy at this price ? Realme Buds Air 7 Swiggy Instamart is showing \u20b92231 for Realme Buds 7 Air with only 1 stock left, should I pull the trigger or search for alternatives within a similar price range. Please help !!",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        },
+        {
+          "source_file": "reddit_myntra_additional_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Is this a good buy at this price ? Realme Buds Air 7 Swiggy Instamart is showing \u20b92231 for Realme Buds 7 Air with only 1 stock left, should I pull the trigger or search for alternatives within a similar price range. Please help !! \ud83d\ude4f",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        }
+      ],
+      "rank": 7
+    }
+  ]
+}

@@ -43,7 +43,8 @@ flowchart TD
     end
 
     subgraph Intelligence & Interface Layer
-        M8 & M9 --> M10[10. Grounded Insights Synthesis Engine]
+        M8 --> M13[13. Empirical Unmet Need Detection Engine]
+        M13 & M9 --> M10[10. Grounded Insights Synthesis Engine]
         M10 --> M11[11. Opportunity Matrix & Scoring]
         M11 --> M12[12. Discovery Engine UI / Dashboard]
     end

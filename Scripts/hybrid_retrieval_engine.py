@@ -13,7 +13,8 @@ DOMAIN_KEYWORDS = [
     "cart", "review", "rating", "outfit", "style", "fashion", "brand", "clothing",
     "apparel", "dress", "shirt", "shoe", "shoes", "delay", "wait", "postpone", "hesitat",
     "barrier", "friction", "recommend", "compare", "shortlist", "bookmark", "save", "saving",
-    "eors", "bff", "ekart", "haul", "try on", "reddit", "youtube", "app", "store"
+    "eors", "bff", "ekart", "haul", "try on", "reddit", "youtube", "app", "store",
+    "unmet", "need", "needs", "gap", "emerge", "conversation", "conversations"
 ]
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
