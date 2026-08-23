@@ -255,30 +255,49 @@ def main():
         with col_intent:
             selected_intents = st.multiselect("Filter by Primary Intent (Excludes 'Other'):", all_intents, default=default_intents)
             
-        # Filter out 'other' intent and apply channel, brand, and intent selections
-        filtered_df = df_data[
+        # 1. Primary subset: Reddit evidence (shown from the start)
+        reddit_df = df_data[
+            (df_data["source_channel"] == "reddit") &
             (df_data["source_channel"].isin(selected_chan)) &
             (df_data["platform_brand"].isin(selected_brand)) &
             (df_data["primary_intent"].isin(selected_intents)) &
             (df_data["primary_intent"].str.lower() != "other")
         ].copy()
         
-        # Priority sorting: wishlist and price_drop first
-        filtered_df["intent_priority"] = filtered_df["primary_intent"].apply(
+        reddit_df["intent_priority"] = reddit_df["primary_intent"].apply(
             lambda x: 0 if str(x).lower() in ["wishlist", "price_drop"] else 1
         )
-        filtered_df = filtered_df.sort_values(by="intent_priority")
+        reddit_df = reddit_df.sort_values(by="intent_priority")
         
-        st.info(f"Displaying {min(50, len(filtered_df))} high-relevance evidence records (Wishlist / Price-Drop focused, 'Other' excluded) out of {len(filtered_df)} matching records.")
+        # 2. Secondary subset: Related evidence from YouTube, Play Store & App Store (shown at the bottom)
+        non_reddit_channels = [c for c in selected_chan if c != "reddit"]
+        if non_reddit_channels:
+            yt_df = df_data[(df_data["source_channel"] == "youtube") & (df_data["platform_brand"].isin(selected_brand))] if "youtube" in non_reddit_channels else pd.DataFrame()
+            app_df = df_data[(df_data["source_channel"].isin(["playstore", "appstore"])) & (df_data["platform_brand"].isin(selected_brand))] if any(c in non_reddit_channels for c in ["playstore", "appstore"]) else pd.DataFrame()
+            non_reddit_df = pd.concat([yt_df.head(6), app_df.head(6)]).dropna(how='all')
+        else:
+            non_reddit_df = pd.DataFrame()
+            
+        # Combine: Reddit first (top 38), then YouTube/App Store/PlayStore for Myntra at the bottom (12)
+        if not reddit_df.empty and not non_reddit_df.empty:
+            filtered_df = pd.concat([reddit_df.head(38), non_reddit_df])
+        elif not reddit_df.empty:
+            filtered_df = reddit_df.head(50)
+        else:
+            filtered_df = non_reddit_df.head(50)
+            
+        st.info(f"Displaying {len(filtered_df)} records — Reddit evidence listed first, with YouTube & App Store / Play Store evidence attached at the bottom.")
         
-        for idx, row in filtered_df.head(50).iterrows():
+        for idx, row in filtered_df.iterrows():
             chan = row["source_channel"]
             badge_class = f"badge-{chan}"
+            intent_val = row.get("primary_intent", "N/A")
+            segment_val = row.get("user_segment", "General User")
             
             st.markdown(f"""
                 <div class="evidence-card">
                     <span class="badge {badge_class}">{chan}</span>
-                    <strong>Brand:</strong> {row['platform_brand'].title()} | <strong>Intent:</strong> <span style="color:#FF3F6C; font-weight:700;">{row['primary_intent']}</span> | <strong>Segment:</strong> {row['user_segment']}<br/>
+                    <strong>Brand:</strong> {row['platform_brand'].title()} | <strong>Intent:</strong> <span style="color:#FF3F6C; font-weight:700;">{intent_val}</span> | <strong>Segment:</strong> {segment_val}<br/>
                     <div style="margin-top:8px; font-style:italic; color:#535766;">"{row['raw_text']}"</div>
                 </div>
             """, unsafe_allow_html=True)
