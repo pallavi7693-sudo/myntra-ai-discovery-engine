@@ -80,7 +80,15 @@ TAXONOMY_PATTERNS = {
         "lack_of_reviews": [r'\breview\b', r'\breviews\b', r'\brating\b', r'\bratings\b', r'\bno review\b', r'\bfeedback\b'],
         "return_concern": [r'\breturn\b', r'\breturns\b', r'\brefund\b', r'\bexchange\b', r'\bpickup\b', r'\bpolicy\b'],
         "delivery_concern": [r'\bdelivery\b', r'\bshipping\b', r'\bcourier\b', r'\barrive\b', r'\blate\b', r'\btracking\b'],
-        "availability": [r'\bout of stock\b', r'\bstock\b', r'\brestock\b', r'\bunavailable\b', r'\bsold out\b']
+        "availability": [r'\bout of stock\b', r'\bstock\b', r'\brestock\b', r'\bunavailable\b', r'\bsold out\b'],
+        "lack_of_urgency": [
+            r'\bnot urgent\b', r'\bno urgency\b', r'\bno hurry\b', r'\bno rush\b', r'\bin no rush\b',
+            r'\bnon-urgent\b', r'\bnon urgent\b', r'\blacks urgency\b', r'\bno immediate need\b',
+            r'\bjust saving\b', r'\bjust bookmarking\b', r'\bfor later\b', r'\bsaving for later\b',
+            r'\bsometime\b', r'\bsomeday\b', r'\beventually\b', r'\bwhenever\b', r'\bno deadline\b',
+            r'\bcasual wishlist\b', r'\bno occasion\b', r'\bjust keeping\b', r'\bhold off\b', r'\bholding off\b',
+            r'\bno time pressure\b', r'\blater on\b', r'\bkeep in wishlist\b', r'\bkept in wishlist\b', r'\bkeep it in wishlist\b'
+        ]
     },
     "user_behavior": {
         "wishlist": [r'\bwishlist\b', r'\bwishlisted\b', r'\bwish listing\b', r'\bsaved\b', r'\bshortlist\b'],
@@ -97,7 +105,8 @@ TAXONOMY_PATTERNS = {
         "styling": [r'\bstyle\b', r'\bstyling\b', r'\bhow to wear\b', r'\boutfit\b', r'\bpair with\b'],
         "quality": [r'\bfabric quality\b', r'\bmaterial info\b', r'\bdurable\b'],
         "price_history": [r'\blowest price\b', r'\bprice history\b', r'\bprice drop\b'],
-        "discount_information": [r'\bcoupon\b', r'\bdiscount\b', r'\bsale date\b', r'\boffer\b']
+        "discount_information": [r'\bcoupon\b', r'\bdiscount\b', r'\bsale date\b', r'\boffer\b'],
+        "urgency_triggers": [r'\blimited stock\b', r'\burgent\b', r'\bprice drop alert\b', r'\bhurry\b']
     },
     "decision_factors": {
         "price": [r'\bprice\b', r'\bcost\b', r'\bcheap\b', r'\baffordable\b', r'\bbudget\b', r'\bvalue\b'],
@@ -106,7 +115,8 @@ TAXONOMY_PATTERNS = {
         "style": [r'\bstyle\b', r'\blooks\b', r'\bpretty\b', r'\bdesign\b', r'\bcolor\b', r'\baesthetic\b'],
         "quality": [r'\bquality\b', r'\bfabric\b', r'\bmaterial\b'],
         "reviews": [r'\breviews\b', r'\bratings\b', r'\bsocial proof\b'],
-        "brand": [r'\bbrand\b', r'\broadster\b', r'\bhrx\b', r'\bmango\b', r'\bzara\b', r'\bhm\b', r'\banouk\b']
+        "brand": [r'\bbrand\b', r'\broadster\b', r'\bhrx\b', r'\bmango\b', r'\bzara\b', r'\bhm\b', r'\banouk\b'],
+        "urgency": [r'\burgent\b', r'\burgency\b', r'\bdeadline\b', r'\boccasion\b', r'\bneed soon\b']
     },
     "opportunity_area": {
         "better_size_guidance": [r'\bsize\b', r'\bsizing\b', r'\bchart\b'],
@@ -115,7 +125,8 @@ TAXONOMY_PATTERNS = {
         "better_price_visibility": [r'\bprice\b', r'\bcost\b', r'\bdiscount\b', r'\bcoupon\b'],
         "better_product_comparison": [r'\bcompare\b', r'\bvs\b', r'\bbetter\b'],
         "better_quality_information": [r'\bquality\b', r'\bfabric\b', r'\bmaterial\b'],
-        "better_return_information": [r'\breturn\b', r'\brefund\b', r'\bexchange\b']
+        "better_return_information": [r'\breturn\b', r'\brefund\b', r'\bexchange\b'],
+        "create_purchase_urgency": [r'\burgency\b', r'\blimited time\b', r'\bstock count\b', r'\bprice drop alert\b', r'\bhurry\b', r'\bfor later\b', r'\bnot urgent\b', r'\bno hurry\b']
     }
 }
 

@@ -71,6 +71,15 @@ UNMET_NEED_TAXONOMY = [
         "associated_barriers": ["availability"],
         "supporting_behaviors": ["wishlist", "purchase_postponed"],
         "associated_outcome": "Recaptures lost demand for out-of-stock sizes when inventory is replenished."
+    },
+    {
+        "id": "purchase_urgency_triggers",
+        "title": "Purchase Urgency & Time-Sensitivity Nudges",
+        "statement": "Need time-sensitive price drop countdowns, limited stock alerts, or occasion deadline nudges to motivate checkout for wishlisted non-urgent items.",
+        "primary_barrier": "lack_of_urgency",
+        "associated_barriers": ["lack_of_urgency"],
+        "supporting_behaviors": ["wishlist", "purchase_postponed"],
+        "associated_outcome": "Triggers immediate purchase momentum and reduces passive, non-urgent wishlist stagnation."
     }
 ]
 

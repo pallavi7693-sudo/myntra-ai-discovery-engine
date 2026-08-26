@@ -82,7 +82,9 @@ def run_quantification_analysis():
         opportunity_matrix.append(metric_info)
         print(f"  • {metric_info['formatted_text']}")
         
-    # 4. Multi-Platform Wishlist Intent Population (All Platforms)
+    # 4. Wishlist-to-Purchase Barrier Quantification (Enforces Myntra Friction Sub-Population Denominator Rule)
+    # USER DIRECTIVE: Wishlist-to-purchase barrier calculations use strictly Myntra's Friction subpopulation (971) as denominator.
+    # Overall friction across all brands or overall dataset size MUST NOT be used in the denominator.
     def is_wishlist_intent_record(row):
         dims = row.get("analytical_dimensions", {})
         behaviors = dims.get("user_behavior", [])
@@ -149,7 +151,9 @@ def run_quantification_analysis():
             "total_records_all_brands": total_records,
             "usable_sentiment_denominator": usable_sent_denom,
             "myntra_friction_population_denominator": myntra_friction_denom,
-            "all_brands_wishlist_intent_denominator": wishlist_denom
+            "wishlist_to_purchase_barrier_denominator": myntra_friction_denom,
+            "all_brands_wishlist_intent_denominator": wishlist_denom,
+            "denominator_scoping_rule": "Wishlist-to-purchase barrier calculations use strictly Myntra's Friction sub-population (971) as denominator."
         },
         "myntra_scoped_barriers": scoped_barrier_results,
         "opportunity_matrix": opportunity_matrix,

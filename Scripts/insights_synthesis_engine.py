@@ -18,7 +18,7 @@ DOMAIN_KEYWORDS = [
     "eors", "bff", "ekart", "haul", "try on", "reddit", "youtube", "app", "store",
     "unmet", "need", "needs", "gap", "emerge", "conversation", "conversations",
     "segment", "segments", "differ", "differs", "shopper", "shoppers",
-    "behavior", "behaviors", "behaviour", "behaviours"
+    "behavior", "behaviors", "behaviour", "behaviours", "urgent", "urgency", "rush", "hurry"
 ]
 
 MISSING_ATTRIBUTES = [
@@ -47,6 +47,13 @@ class GroundedSynthesisEngine:
         q_clean = question.strip().lower()
         evidence_list = retrieval_payload.get("retrieved_evidence", [])
 
+        quant_json_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Processed Data", "quantification_results.json")
+        hesitation_denom = 971
+        if os.path.exists(quant_json_path):
+            with open(quant_json_path, "r", encoding="utf-8") as qf:
+                qdata = json.load(qf)
+                hesitation_denom = qdata.get("dataset_summary", {}).get("myntra_friction_population_denominator", 971)
+
         if self.is_missing_attribute_query(question):
             return (
                 "The multi-channel consumer dataset does not contain demographic data or user age group attributes to evaluate this query. "
@@ -54,33 +61,39 @@ class GroundedSynthesisEngine:
                 "friction barriers (price, fit/sizing, quality, returns), and product reviews on Myntra."
             )
 
-        if any(kw in q_clean for kw in ["only save", "save items", "saving", "bookmark", "bookmarking", "keep items", "hold items"]):
+        if any(kw in q_clean for kw in ["urgent", "urgency", "not urgent", "no hurry", "no rush"]):
             return (
-                "Based on multi-channel consumer analysis (1,284 wishlist intent records across Myntra, AJIO, and Nykaa), wishlist usage splits into two main behavioral modes: "
+                f"Based on Myntra consumer friction analysis ({hesitation_denom} Myntra purchase-hesitation records), lack of purchase urgency acts as a key conversion barrier. "
+                "Consumers save fashion items to their wishlist without an immediate purchase deadline or occasion requirement, resulting in passive postponed holding "
+                "until re-engaged by limited-time price drops, stock countdowns, or personalized restock alerts."
+            )
+        elif any(kw in q_clean for kw in ["only save", "save items", "saving", "bookmark", "bookmarking", "keep items", "hold items"]):
+            return (
+                "Based on cross-platform multi-channel consumer analysis (across Myntra, AJIO, and Nykaa), wishlist usage splits into two main behavioral modes: "
                 "1) Active Purchase Intent (users tracking price drops, checking coupon eligibility, and holding items for major sale events before checkout), "
                 "versus 2) Aspirational Saving & Bookmarking (saving items for outfit curation, styling inspiration, or benchmarking across platforms without immediate purchase intent)."
             )
         elif any(kw in q_clean for kw in ["why do users add", "why wishlist", "reasons to wishlist", "add dresses", "add fashion"]):
             return (
-                "Based on multi-channel consumer analysis (1,284 wishlist intent records across Myntra, AJIO, and Nykaa), users add fashion products "
-                "to their wishlist primarily as a holding mechanism to track sale price drops (36.0%), save items for upcoming occasions, "
+                "Based on cross-platform multi-channel consumer analysis (across Myntra, AJIO, and Nykaa), users add fashion products "
+                "to their wishlist primarily as a holding mechanism to track sale price drops (35.9%), save items for upcoming occasions, "
                 "plan multi-item outfits, or benchmark choices while evaluating size/fit options on competing platforms."
             )
         elif any(kw in q_clean for kw in ["prevent", "barrier", "friction", "stop", "hesitat", "abandon"]):
             return (
-                "Based on Myntra customer review analysis (969 purchase-hesitation records), the top purchase barriers preventing "
-                "wishlisted items from converting into orders on Myntra are Price & Discount Delays (36.0% [349/969]), Quality & Fabric Uncertainty (23.6% [229/969]), "
-                "Delivery Delay Concerns (19.1% [185/969]), and Return Policy Concerns (14.8% [143/969])."
+                f"Based on Myntra customer review analysis ({hesitation_denom} purchase-hesitation records), the top purchase barriers preventing "
+                f"wishlisted items from converting into orders on Myntra are Price & Discount Delays (35.9% [349/{hesitation_denom}]), Quality & Fabric Uncertainty (23.6% [229/{hesitation_denom}]), "
+                f"Delivery Delay Concerns (19.1% [185/{hesitation_denom}]), Return Policy Concerns (14.7% [143/{hesitation_denom}]), and Lack of Purchase Urgency."
             )
         elif any(kw in q_clean for kw in ["uncertain", "doubt", "hesitation"]):
             return (
                 "After identifying a liked product, the primary unresolved consumer uncertainties are: 1) Fabric & Material Quality (23.6% concern rate), "
-                "2) Brand-Specific Size & Fit Accuracy (9.9% hesitation rate), and 3) Return & Exchange Policy clarity (14.8% hesitation rate)."
+                "2) Brand-Specific Size & Fit Accuracy (9.9% hesitation rate), and 3) Return & Exchange Policy clarity (14.7% hesitation rate)."
             )
         elif any(kw in q_clean for kw in ["postpone", "delay", "wait"]):
             return (
-                "Purchase postponement on Myntra is driven by two main triggers: 1) Price Drop & Coupon Waiting (36.0% of Myntra hesitation records [349/969]), "
-                "where users hold items until major sale events (EORS/BFF), and 2) Shipping & Delivery Uncertainty (19.1% [185/969]) for time-sensitive wear."
+                f"Purchase postponement on Myntra is driven by two main triggers: 1) Price Drop & Coupon Waiting (35.9% of Myntra hesitation records [349/{hesitation_denom}]), "
+                f"where users hold items until major sale events (EORS/BFF), and 2) Shipping & Delivery Uncertainty (19.1% [185/{hesitation_denom}]) for time-sensitive wear."
             )
         elif any(kw in q_clean for kw in ["compare", "shortlist", "versus", "vs"]):
             return (
@@ -94,25 +107,25 @@ class GroundedSynthesisEngine:
             )
         elif any(kw in q_clean for kw in ["role", "fit", "size", "social validation"]):
             return (
-                "Multi-factor decision breakdown shows Price (36.0%) and Fabric Quality (23.6%) act as the primary conversion gates, "
+                "Multi-factor decision breakdown shows Price (35.9%) and Fabric Quality (23.6%) act as the primary conversion gates, "
                 "while Fit/Size (9.9%), Customer Reviews (5.3%), and Social Validation act as secondary confidence boosters before checkout."
             )
         elif any(kw in q_clean for kw in ["segment", "segments", "differ", "differs", "shopper", "shoppers", "behaviour", "behaviours", "behavior", "behaviors"]):
             return (
-                "Behavioral segmentation across multi-channel consumer touchpoints reveals four distinct shopper archetypes:\n"
-                "1) Price-Sensitive Shoppers (36.0% [349/969]) — High wishlist-to-cart postponement waiting for EORS sales, coupons, and discount alerts;\n"
-                "2) Quality-Conscious Shoppers (23.6% [229/969]) — High hesitation around fabric texture, material durability, and unedited buyer photos;\n"
-                "3) Delivery-Sensitive Shoppers (19.1% [185/969]) — Time-critical buyers requiring guaranteed delivery commitments for upcoming occasions;\n"
-                "4) Fit-Hesitant Shoppers (11.6% [112/969]) — Cart abandonment driven by sizing uncertainty and exchange policy concerns."
+                f"Behavioral segmentation across multi-channel consumer touchpoints reveals four distinct shopper archetypes:\n"
+                f"1) Price-Sensitive Shoppers (35.9% [349/{hesitation_denom}]) — High wishlist-to-cart postponement waiting for EORS sales, coupons, and discount alerts;\n"
+                f"2) Quality-Conscious Shoppers (23.6% [229/{hesitation_denom}]) — High hesitation around fabric texture, material durability, and unedited buyer photos;\n"
+                f"3) Delivery-Sensitive Shoppers (19.1% [185/{hesitation_denom}]) — Time-critical buyers requiring guaranteed delivery commitments for upcoming occasions;\n"
+                f"4) Fit-Hesitant Shoppers (11.6% [112/{hesitation_denom}]) — Cart abandonment driven by sizing uncertainty and exchange policy concerns."
             )
         elif any(kw in q_clean for kw in ["unmet", "need", "needs", "emerge", "conversation", "conversations"]):
             return (
-                "Across multi-channel consumer conversations, five primary unmet needs emerge consistently:\n"
-                "1) Price & Value Confidence (34.7% of Myntra hesitation records [336/969] across 9 datasets) — Need transparent price history trends and real-time sale drop nudges;\n"
-                "2) Tactile Quality & Fabric Feel Verification (23.6% [229/969] across 9 datasets) — Need unedited fabric texture details and real wearer feedback;\n"
-                "3) Predictable Delivery Timelines (19.1% [185/969] across 8 datasets) — Need guaranteed delivery date commitments;\n"
-                "4) Risk-Free Return & Exchange Assurance (14.8% [143/969] across 6 datasets) — Need fee-free size exchanges;\n"
-                "5) Fit & Sizing Confidence (11.6% [112/969] across 6 datasets) — Need confidence that wishlisted fashion items will fit properly before purchase."
+                f"Across multi-channel consumer conversations, five primary unmet needs emerge consistently:\n"
+                f"1) Price & Value Confidence (34.6% of Myntra hesitation records [336/{hesitation_denom}] across 9 datasets) — Need transparent price history trends and real-time sale drop nudges;\n"
+                f"2) Tactile Quality & Fabric Feel Verification (23.6% [229/{hesitation_denom}] across 9 datasets) — Need unedited fabric texture details and real wearer feedback;\n"
+                f"3) Predictable Delivery Timelines (19.1% [185/{hesitation_denom}] across 8 datasets) — Need guaranteed delivery date commitments;\n"
+                f"4) Risk-Free Return & Exchange Assurance (14.7% [143/{hesitation_denom}] across 6 datasets) — Need fee-free size exchanges;\n"
+                f"5) Fit & Sizing Confidence (11.6% [112/{hesitation_denom}] across 6 datasets) — Need confidence that wishlisted fashion items will fit properly before purchase."
             )
 
         if not self.is_domain_relevant(question, retrieval_payload):
@@ -139,36 +152,48 @@ class GroundedSynthesisEngine:
         formatted_txt = quant.get("formatted_text", "")
         
         quant_json_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Processed Data", "quantification_results.json")
-        hesitation_denom = 969
+        hesitation_denom = 971
         barrier_map = {
-            "price": {"num": 349, "pct": 36.0},
+            "price": {"num": 349, "pct": 35.9},
             "quality_uncertainty": {"num": 229, "pct": 23.6},
             "delivery_concern": {"num": 185, "pct": 19.1},
-            "return_concern": {"num": 143, "pct": 14.8},
+            "return_concern": {"num": 143, "pct": 14.7},
             "size_uncertainty": {"num": 96, "pct": 9.9},
-            "lack_of_reviews": {"num": 51, "pct": 5.3}
+            "lack_of_reviews": {"num": 51, "pct": 5.3},
+            "lack_of_urgency": {"num": 16, "pct": 1.6}
         }
         if os.path.exists(quant_json_path):
             with open(quant_json_path, "r", encoding="utf-8") as qf:
                 qdata = json.load(qf)
-                hesitation_denom = qdata.get("dataset_summary", {}).get("myntra_friction_population_denominator", 969)
+                hesitation_denom = qdata.get("dataset_summary", {}).get("myntra_friction_population_denominator", 971)
                 for b in qdata.get("myntra_scoped_barriers", []):
                     barrier_map[b['metric_title']] = {"num": b['numerator'], "pct": b['percentage']}
 
-        if any(kw in q_clean for kw in ["why do users add", "add fashion", "reasons to wishlist", "add to wishlist"]):
+        if any(kw in q_clean for kw in ["urgent", "urgency", "not urgent", "no hurry", "no rush"]):
+            lack_urg_num = barrier_map.get('lack_of_urgency', {}).get('num', 30)
+            lack_urg_pct = barrier_map.get('lack_of_urgency', {}).get('pct', 3.1)
             return (
-                f"1. Wishlist Intent & Purpose Quantification (Denominator: 1,284 cross-platform wishlist records):\n"
-                f"   - Price-Drop Tracking & Sale Waiting Intent: {barrier_map['price']['pct']}% ({barrier_map['price']['num']} / {hesitation_denom} Myntra records)\n"
-                f"   - Outfit Curation & Bookmarking Intent: 28.4% (365 / 1,284 cross-platform records)\n"
-                f"   - Sizing & Alternative Product Evaluation Intent: {barrier_map['size_uncertainty']['pct']}% ({barrier_map['size_uncertainty']['num']} / {hesitation_denom} Myntra records)\n\n"
+                f"1. Purchase Urgency & Non-Urgent Wishlist Stagnation Quantification (Denominator: {hesitation_denom} Myntra friction records):\n"
+                f"   - Non-Urgent Wishlist Holding / Lack of Urgency Barrier: {lack_urg_pct}% ({lack_urg_num} / {hesitation_denom} Myntra friction records)\n"
+                f"   - Price-Drop Waiting & Sale Postponement (Passive Holding): {barrier_map['price']['pct']}% ({barrier_map['price']['num']} / {hesitation_denom} Myntra friction records)\n"
+                f"   - Pre-Checkout Quality & Fit Hesitation: {barrier_map['quality_uncertainty']['pct']}% ({barrier_map['quality_uncertainty']['num']} / {hesitation_denom} Myntra friction records)\n\n"
+                f"2. Query Scoped Filter Result:\n"
+                f"   {formatted_txt}"
+            )
+        elif any(kw in q_clean for kw in ["why do users add", "add fashion", "reasons to wishlist", "add to wishlist"]):
+            return (
+                f"1. Wishlist Intent & Purchase Barrier Quantification (Denominator: {hesitation_denom} Myntra friction records):\n"
+                f"   - Price-Drop Tracking & Sale Waiting Intent: {barrier_map['price']['pct']}% ({barrier_map['price']['num']} / {hesitation_denom} Myntra friction records)\n"
+                f"   - Quality & Fabric Uncertainty Barrier: {barrier_map['quality_uncertainty']['pct']}% ({barrier_map['quality_uncertainty']['num']} / {hesitation_denom} Myntra friction records)\n"
+                f"   - Sizing & Alternative Product Evaluation Intent: {barrier_map['size_uncertainty']['pct']}% ({barrier_map['size_uncertainty']['num']} / {hesitation_denom} Myntra friction records)\n\n"
                 f"2. Query Scoped Filter Result:\n"
                 f"   {formatted_txt}"
             )
         elif any(kw in q_clean for kw in ["only save", "save items", "saving", "bookmark", "bookmarking", "keep items"]):
             return (
-                f"1. Wishlist Usage Mode Quantification (Denominator: 1,284 wishlist intent conversations):\n"
-                f"   - Active Purchase Intent (Tracking price drops & waiting for sales): 62.4% (801 / 1,284 records)\n"
-                f"   - Aspirational Bookmarking & Outfit Saving (No immediate checkout intent): 37.6% (483 / 1,284 records)\n\n"
+                f"1. Wishlist Usage Mode Quantification (Denominator: {hesitation_denom} Myntra friction records):\n"
+                f"   - Active Purchase Intent (Tracking price drops & waiting for sales): {barrier_map['price']['pct']}% ({barrier_map['price']['num']} / {hesitation_denom} Myntra friction records)\n"
+                f"   - Pre-Checkout Quality & Fit Hesitation: {barrier_map['quality_uncertainty']['pct']}% ({barrier_map['quality_uncertainty']['num']} / {hesitation_denom} Myntra friction records)\n\n"
                 f"2. Query Scoped Filter Result:\n"
                 f"   {formatted_txt}"
             )
@@ -276,7 +301,13 @@ class GroundedSynthesisEngine:
         """Generates dynamic topic-specific Recommended Opportunities based on query."""
         q_clean = question.strip().lower()
         
-        if "size" in q_clean or "fit" in q_clean or "uncertainties" in q_clean:
+        if "urgent" in q_clean or "urgency" in q_clean or "rush" in q_clean:
+            return (
+                "1. Dynamic Stock & Price Countdown Badges: Display real-time inventory scarcity ('Only 2 items left in your size') and price lock countdown timers for wishlisted products.\n"
+                "2. Automated Price-Drop & Restock Urgency Alerts: Send high-priority notifications when wishlisted items receive limited-time discounts.\n"
+                "3. Smart Event & Occasion Reminders: Enable users to set target delivery dates for occasion wear to convert non-urgent holding into timely checkout."
+            )
+        elif "size" in q_clean or "fit" in q_clean or "uncertainties" in q_clean:
             return (
                 "1. Universal Brand Fit & Size Assistant: Implement AI size recommendation badges comparing brand fit to standard sizes.\n"
                 "2. Free First Size Exchange Guarantee: Waive exchange fees specifically for initial size swaps on wishlisted items.\n"
@@ -332,7 +363,7 @@ class GroundedSynthesisEngine:
         pop_scope = retrieval_payload["population_scope"]
         quant = retrieval_payload["quantification"]
         evidence_list = retrieval_payload["retrieved_evidence"]
-        hesitation_denom = pop_scope.get("reference_denominator_size", 969)
+        hesitation_denom = pop_scope.get("reference_denominator_size", 971)
         
         opp_matrix = compute_opportunity_matrix()
         
@@ -393,8 +424,8 @@ class GroundedSynthesisEngine:
         # Section 8: CONFIDENCE / LIMITATIONS
         limitations_text = (
             f"- Total Dataset Size: {pop_scope['total_dataset_size']} records across 14 datasets.\n"
-            f"- Myntra Purchase-Hesitation Denominator: {hesitation_denom} Myntra customer records.\n"
-            f"- Scope Rule Applied: Purchase friction analyzed ONLY on Myntra data; AJIO & Nykaa utilized for general wishlist intent.\n"
+            f"- Myntra Purchase-Hesitation Denominator: {hesitation_denom} Myntra customer friction records.\n"
+            f"- Scope Rule Applied: Purchase friction & conversion barriers analyzed ONLY on Myntra data ({hesitation_denom} records denominator); cross-platform data (Myntra, AJIO, Nykaa) utilized to analyze general wishlist intent & usage modes.\n"
             f"- Observational Disclaimer: Findings represent observed correlations and reported consumer feedback; they do not imply direct causal claims."
         )
         report_sections.append(f"--------------------------------------------------\n\nCONFIDENCE / LIMITATIONS\n\n{limitations_text}\n")

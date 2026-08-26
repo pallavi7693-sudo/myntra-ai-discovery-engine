@@ -1,7 +1,7 @@
 {
   "summary": {
-    "total_unmet_needs_detected": 7,
-    "myntra_friction_denominator": 969,
+    "total_unmet_needs_detected": 8,
+    "myntra_friction_denominator": 971,
     "total_dataset_records": 6562
   },
   "ranked_unmet_needs": [
@@ -11,8 +11,8 @@
       "statement": "Need transparent price history trends and real-time sale drop nudges to verify optimal purchase timing before checkout.",
       "strength": "High",
       "evidence_count": 336,
-      "hesitation_denominator": 969,
-      "share_pct": 34.7,
+      "hesitation_denominator": 971,
+      "share_pct": 34.6,
       "total_corpus_count": 6562,
       "total_share_pct": 5.1,
       "unique_datasets_count": 9,
@@ -74,7 +74,7 @@
       "statement": "Need unedited fabric texture details and real wearer feedback to verify material durability and opacity before buying.",
       "strength": "High",
       "evidence_count": 229,
-      "hesitation_denominator": 969,
+      "hesitation_denominator": 971,
       "share_pct": 23.6,
       "total_corpus_count": 6562,
       "total_share_pct": 3.5,
@@ -136,7 +136,7 @@
       "statement": "Need guaranteed delivery date commitments and courier dispatch tracking for time-sensitive occasion wear.",
       "strength": "High",
       "evidence_count": 185,
-      "hesitation_denominator": 969,
+      "hesitation_denominator": 971,
       "share_pct": 19.1,
       "total_corpus_count": 6562,
       "total_share_pct": 2.8,
@@ -196,8 +196,8 @@
       "statement": "Need clear, hassle-free return windows and free first size-exchange guarantees to mitigate post-order sizing regret.",
       "strength": "High",
       "evidence_count": 143,
-      "hesitation_denominator": 969,
-      "share_pct": 14.8,
+      "hesitation_denominator": 971,
+      "share_pct": 14.7,
       "total_corpus_count": 6562,
       "total_share_pct": 2.2,
       "unique_datasets_count": 6,
@@ -254,8 +254,8 @@
       "statement": "Need greater confidence that a wishlisted fashion product will fit properly before checkout to avoid return hassle.",
       "strength": "High",
       "evidence_count": 112,
-      "hesitation_denominator": 969,
-      "share_pct": 11.6,
+      "hesitation_denominator": 971,
+      "share_pct": 11.5,
       "total_corpus_count": 6562,
       "total_share_pct": 1.7,
       "unique_datasets_count": 6,
@@ -314,7 +314,7 @@
       "statement": "Need unedited real customer try-on photos and body-dimension-matched reviews to visualize actual product appearance.",
       "strength": "Medium",
       "evidence_count": 51,
-      "hesitation_denominator": 969,
+      "hesitation_denominator": 971,
       "share_pct": 5.3,
       "total_corpus_count": 6562,
       "total_share_pct": 0.8,
@@ -376,7 +376,7 @@
       "statement": "Need real-time size restock notifications and inventory availability nudges for wishlisted out-of-stock items.",
       "strength": "Medium",
       "evidence_count": 32,
-      "hesitation_denominator": 969,
+      "hesitation_denominator": 971,
       "share_pct": 3.3,
       "total_corpus_count": 6562,
       "total_share_pct": 0.5,
@@ -426,6 +426,60 @@
         }
       ],
       "rank": 7
+    },
+    {
+      "unmet_need_id": "purchase_urgency_triggers",
+      "title": "Purchase Urgency & Time-Sensitivity Nudges",
+      "statement": "Need time-sensitive price drop countdowns, limited stock alerts, or occasion deadline nudges to motivate checkout for wishlisted non-urgent items.",
+      "strength": "Low",
+      "evidence_count": 16,
+      "hesitation_denominator": 971,
+      "share_pct": 1.6,
+      "total_corpus_count": 6562,
+      "total_share_pct": 0.2,
+      "unique_datasets_count": 3,
+      "unique_datasets": [
+        "myntra_playstore.csv",
+        "reddit_myntra_cleaned.csv",
+        "reddit_myntra_labeled.csv"
+      ],
+      "unique_channels_count": 2,
+      "unique_channels": [
+        "playstore",
+        "reddit"
+      ],
+      "associated_purchase_barrier": "Lack Of Urgency",
+      "associated_purchase_barrier_raw": "lack_of_urgency",
+      "associated_purchase_behavior": "Purchase Postponed / Cart Waiting",
+      "supporting_behavioral_signals": [
+        "wishlist",
+        "purchase_postponed"
+      ],
+      "associated_user_outcome": "Triggers immediate purchase momentum and reduces passive, non-urgent wishlist stagnation.",
+      "representative_evidence": [
+        {
+          "source_file": "reddit_myntra_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Many buyers are simply unaware of such fraudulent activity on Myntra. Anyone who knows how the original product actually looks can easily tell that many of the people posting positive reviews are unknowingly happy with fake products.\n\nIs that really the right thing? \ud83d\ude11\n\nYes, I might eventually get my",
+          "primary_intent": "product_quality",
+          "sentiment_label": "Negative"
+        },
+        {
+          "source_file": "reddit_myntra_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Well nothing will happen. This exact thing happened with me too but for Flipkart.\n\n I never got my orders and on top of that someone used 1500 from my account's pay later when it was disabled and inaccessible to me. I tried very hard for one complete year, I spent hours trying to speak to the custom",
+          "primary_intent": "other",
+          "sentiment_label": "Negative"
+        },
+        {
+          "source_file": "reddit_myntra_labeled.csv",
+          "source_channel": "reddit",
+          "raw_text": "Trust me, take this to X (Twitter). I was in the same situation with Myntra. I tagged both Myntra and Myntra Support, kept posting updates, and replied to their comments on other people\u2019s complaints so they would notice my issue. My post eventually got traction, and their team reached out to me with",
+          "primary_intent": "other",
+          "sentiment_label": "Positive"
+        }
+      ],
+      "rank": 8
     }
   ]
 }

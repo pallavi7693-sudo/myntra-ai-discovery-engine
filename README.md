@@ -12,31 +12,35 @@ By processing **6,562 consumer records across 14 datasets** spanning 4 major tou
 
 ```
 Wishlist Consideration  ───►  Friction Evaluation  ───►  Grounded Insight & Opportunity Matrix
-                                (969 Denominator)        (Price, Quality, Size, Returns)
+                                (971 Denominator)        (Price, Quality, Size, Returns)
 ```
 
 ---
 
 ## 🎯 Key Analytical Findings & Opportunity Rankings
 
-### Myntra Purchase Barrier Breakdown (Denominator: 969 Myntra Purchase-Hesitation Records)
-1. **Price & Discount Delays**: 349 / 969 (**36.0%**)
-2. **Quality & Fabric Uncertainty**: 229 / 969 (**23.6%**)
-3. **Delivery Delay Concerns**: 185 / 969 (**19.1%**)
-4. **Return Policy Concerns**: 143 / 969 (**14.8%**)
-5. **Size Uncertainty**: 96 / 969 (**9.9%**)
-6. **Lack of Reviews & Social Proof**: 51 / 969 (**5.3%**)
-7. **Product Availability**: 32 / 969 (**3.3%**)
-8. **Fit Uncertainty**: 17 / 969 (**1.8%**)
+> 💡 **Denominator Scoping Rule**: All wishlist-to-purchase barrier calculations use strictly **Myntra's Friction sub-population (971 records)** as the denominator. Overall friction across all brands or overall dataset size is excluded from the denominator.
+
+### Myntra Purchase Barrier Breakdown (Denominator: 971 Myntra Purchase-Hesitation Records)
+1. **Price & Discount Delays**: 349 / 971 (**35.9%**)
+2. **Quality & Fabric Uncertainty**: 229 / 971 (**23.6%**)
+3. **Delivery Delay Concerns**: 185 / 971 (**19.1%**)
+4. **Return Policy Concerns**: 143 / 971 (**14.7%**)
+5. **Size Uncertainty**: 96 / 971 (**9.9%**)
+6. **Lack of Reviews & Social Proof**: 51 / 971 (**5.3%**)
+7. **Product Availability**: 32 / 971 (**3.3%**)
+8. **Fit Uncertainty**: 17 / 971 (**1.8%**)
+9. **Lack of Purchase Urgency**: 16 / 971 (**1.6%**)
 
 ### Ranked Opportunity Area Matrix ($Score = Share \% \times Severity Weight$)
-1. **`better_price_visibility`**: Score **32.50** (25.0% share [242/969] | 1.3x weight)
-2. **`better_quality_information`**: Score **30.80** (22.0% share [213/969] | 1.4x weight)
-3. **`better_return_information`**: Score **19.80** (13.2% share [128/969] | 1.5x weight)
-4. **`better_size_guidance`**: Score **8.14** (7.4% share [72/969] | 1.1x weight)
-5. **`stronger_social_proof`**: Score **5.88** (4.9% share [47/969] | 1.2x weight)
-6. **`better_product_comparison`**: Score **4.30** (4.3% share [42/969] | 1.0x weight)
-7. **`better_fit_information`**: Score **1.98** (1.8% share [17/969] | 1.1x weight)
+1. **`better_price_visibility`**: Score **32.37** (24.9% share [242/971] | 1.3x weight)
+2. **`better_quality_information`**: Score **30.66** (21.9% share [213/971] | 1.4x weight)
+3. **`better_return_information`**: Score **19.80** (13.2% share [128/971] | 1.5x weight)
+4. **`better_size_guidance`**: Score **8.14** (7.4% share [72/971] | 1.1x weight)
+5. **`stronger_social_proof`**: Score **5.76** (4.8% share [47/971] | 1.2x weight)
+6. **`better_product_comparison`**: Score **4.30** (4.3% share [42/971] | 1.0x weight)
+7. **`better_fit_information`**: Score **1.98** (1.8% share [17/971] | 1.1x weight)
+8. **`create_purchase_urgency`**: Score **0.36** (0.3% share [3/971] | 1.2x weight)
 
 ---
 

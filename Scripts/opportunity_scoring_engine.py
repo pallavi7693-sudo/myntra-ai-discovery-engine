@@ -11,6 +11,7 @@ SEVERITY_WEIGHTS = {
     "better_quality_information": 1.4,
     "better_price_visibility": 1.3,
     "stronger_social_proof": 1.2,
+    "create_purchase_urgency": 1.2,
     "better_size_guidance": 1.1,
     "better_fit_information": 1.1,
     "better_product_comparison": 1.0

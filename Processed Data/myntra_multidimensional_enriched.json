@@ -11952,7 +11952,8 @@
       ],
       "information_needs": [],
       "decision_factors": [
-        "price"
+        "price",
+        "urgency"
       ],
       "opportunity_area": []
     }
@@ -16850,6 +16851,7 @@
       "purchase_status": "uncertain",
       "purchase_barriers": [
         "lack_of_reviews",
+        "lack_of_urgency",
         "return_concern",
         "size_uncertainty"
       ],
@@ -17533,7 +17535,9 @@
       ],
       "purchase_stage": "purchase_intent",
       "purchase_status": "postponed",
-      "purchase_barriers": [],
+      "purchase_barriers": [
+        "lack_of_urgency"
+      ],
       "information_needs": [],
       "decision_factors": [
         "style"
@@ -18703,9 +18707,11 @@
     },
     "analytical_dimensions": {
       "user_behavior": [],
-      "purchase_stage": "discovery",
+      "purchase_stage": "consideration",
       "purchase_status": "uncertain",
-      "purchase_barriers": [],
+      "purchase_barriers": [
+        "lack_of_urgency"
+      ],
       "information_needs": [],
       "decision_factors": [],
       "opportunity_area": []
@@ -21439,6 +21445,7 @@
       "purchase_stage": "consideration",
       "purchase_status": "uncertain",
       "purchase_barriers": [
+        "lack_of_urgency",
         "price",
         "price"
       ],
@@ -21612,6 +21619,7 @@
       "purchase_stage": "purchase_intent",
       "purchase_status": "likely_to_purchase",
       "purchase_barriers": [
+        "lack_of_urgency",
         "price",
         "size_uncertainty"
       ],
@@ -26119,6 +26127,7 @@
       "purchase_stage": "purchase_intent",
       "purchase_status": "likely_to_purchase",
       "purchase_barriers": [
+        "lack_of_urgency",
         "return_concern"
       ],
       "information_needs": [],
@@ -31367,9 +31376,13 @@
       "purchase_barriers": [
         "delivery_concern"
       ],
-      "information_needs": [],
+      "information_needs": [
+        "urgency_triggers"
+      ],
       "decision_factors": [],
-      "opportunity_area": []
+      "opportunity_area": [
+        "create_purchase_urgency"
+      ]
     }
   },
   {
@@ -32816,6 +32829,7 @@
       "purchase_stage": "consideration",
       "purchase_status": "uncertain",
       "purchase_barriers": [
+        "lack_of_urgency",
         "return_concern"
       ],
       "information_needs": [],
@@ -38398,7 +38412,9 @@
         "return_concern"
       ],
       "information_needs": [],
-      "decision_factors": [],
+      "decision_factors": [
+        "urgency"
+      ],
       "opportunity_area": [
         "better_return_information"
       ]
@@ -38719,7 +38735,8 @@
       "purchase_stage": "consideration",
       "purchase_status": "uncertain",
       "purchase_barriers": [
-        "delivery_concern"
+        "delivery_concern",
+        "lack_of_urgency"
       ],
       "information_needs": [
         "reviews"
@@ -44325,7 +44342,9 @@
       ],
       "purchase_stage": "purchase_intent",
       "purchase_status": "likely_to_purchase",
-      "purchase_barriers": [],
+      "purchase_barriers": [
+        "lack_of_urgency"
+      ],
       "information_needs": [],
       "decision_factors": [],
       "opportunity_area": []
@@ -58311,6 +58330,7 @@
       "purchase_stage": "consideration",
       "purchase_status": "uncertain",
       "purchase_barriers": [
+        "lack_of_urgency",
         "return_concern"
       ],
       "information_needs": [],
@@ -72434,7 +72454,8 @@
       "purchase_stage": "consideration",
       "purchase_status": "uncertain",
       "purchase_barriers": [
-        "delivery_concern"
+        "delivery_concern",
+        "lack_of_urgency"
       ],
       "information_needs": [
         "reviews"
@@ -89964,7 +89985,8 @@
       "purchase_stage": "purchase_intent",
       "purchase_status": "likely_to_purchase",
       "purchase_barriers": [
-        "delivery_concern"
+        "delivery_concern",
+        "lack_of_urgency"
       ],
       "information_needs": [
         "discount_information"
@@ -92519,8 +92541,12 @@
         "delivery_concern"
       ],
       "information_needs": [],
-      "decision_factors": [],
-      "opportunity_area": []
+      "decision_factors": [
+        "urgency"
+      ],
+      "opportunity_area": [
+        "create_purchase_urgency"
+      ]
     }
   },
   {
@@ -137097,6 +137123,7 @@
       "purchase_stage": "consideration",
       "purchase_status": "postponed",
       "purchase_barriers": [
+        "lack_of_urgency",
         "quality_uncertainty"
       ],
       "information_needs": [],
@@ -138939,9 +138966,11 @@
     },
     "analytical_dimensions": {
       "user_behavior": [],
-      "purchase_stage": "discovery",
+      "purchase_stage": "consideration",
       "purchase_status": "uncertain",
-      "purchase_barriers": [],
+      "purchase_barriers": [
+        "lack_of_urgency"
+      ],
       "information_needs": [],
       "decision_factors": [],
       "opportunity_area": []
@@ -144720,6 +144749,7 @@
       "purchase_stage": "consideration",
       "purchase_status": "uncertain",
       "purchase_barriers": [
+        "lack_of_urgency",
         "return_concern"
       ],
       "information_needs": [],
@@ -151612,8 +151642,12 @@
         "delivery_concern",
         "return_concern"
       ],
-      "information_needs": [],
-      "decision_factors": [],
+      "information_needs": [
+        "urgency_triggers"
+      ],
+      "decision_factors": [
+        "urgency"
+      ],
       "opportunity_area": [
         "better_return_information"
       ]
@@ -153573,7 +153607,8 @@
       "purchase_stage": "purchase_intent",
       "purchase_status": "likely_to_purchase",
       "purchase_barriers": [
-        "availability"
+        "availability",
+        "lack_of_urgency"
       ],
       "information_needs": [
         "discount_information"
@@ -153738,6 +153773,7 @@
       "purchase_status": "likely_to_purchase",
       "purchase_barriers": [
         "delivery_concern",
+        "lack_of_urgency",
         "return_concern"
       ],
       "information_needs": [],
@@ -173411,7 +173447,8 @@
       ],
       "information_needs": [],
       "decision_factors": [
-        "price"
+        "price",
+        "urgency"
       ],
       "opportunity_area": []
     }
@@ -178309,6 +178346,7 @@
       "purchase_status": "uncertain",
       "purchase_barriers": [
         "lack_of_reviews",
+        "lack_of_urgency",
         "return_concern",
         "size_uncertainty"
       ],
@@ -178992,7 +179030,9 @@
       ],
       "purchase_stage": "purchase_intent",
       "purchase_status": "postponed",
-      "purchase_barriers": [],
+      "purchase_barriers": [
+        "lack_of_urgency"
+      ],
       "information_needs": [],
       "decision_factors": [
         "style"
@@ -180162,9 +180202,11 @@
     },
     "analytical_dimensions": {
       "user_behavior": [],
-      "purchase_stage": "discovery",
+      "purchase_stage": "consideration",
       "purchase_status": "uncertain",
-      "purchase_barriers": [],
+      "purchase_barriers": [
+        "lack_of_urgency"
+      ],
       "information_needs": [],
       "decision_factors": [],
       "opportunity_area": []
@@ -182875,6 +182917,7 @@
       "purchase_stage": "consideration",
       "purchase_status": "uncertain",
       "purchase_barriers": [
+        "lack_of_urgency",
         "price"
       ],
       "information_needs": [],
@@ -183035,6 +183078,7 @@
       "purchase_stage": "purchase_intent",
       "purchase_status": "likely_to_purchase",
       "purchase_barriers": [
+        "lack_of_urgency",
         "price",
         "size_uncertainty"
       ],
@@ -187542,6 +187586,7 @@
       "purchase_stage": "purchase_intent",
       "purchase_status": "likely_to_purchase",
       "purchase_barriers": [
+        "lack_of_urgency",
         "return_concern"
       ],
       "information_needs": [],
@@ -192745,9 +192790,13 @@
       "purchase_barriers": [
         "delivery_concern"
       ],
-      "information_needs": [],
+      "information_needs": [
+        "urgency_triggers"
+      ],
       "decision_factors": [],
-      "opportunity_area": []
+      "opportunity_area": [
+        "create_purchase_urgency"
+      ]
     }
   },
   {
@@ -194194,6 +194243,7 @@
       "purchase_stage": "consideration",
       "purchase_status": "uncertain",
       "purchase_barriers": [
+        "lack_of_urgency",
         "return_concern"
       ],
       "information_needs": [],

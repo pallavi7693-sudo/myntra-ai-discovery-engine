@@ -202,7 +202,17 @@ def main():
         )
     
     total_records = len(df_data)
-    myntra_friction_df = df_data[(df_data["platform_brand"] == "myntra") & (df_data.apply(lambda r: len(r['analytical_dimensions']['purchase_barriers']) > 0 or r['analytical_dimensions']['purchase_status'] == 'postponed', axis=1))]
+    
+    def is_myntra_friction_record(r):
+        if r.get("platform_brand") != "myntra":
+            return False
+        dims = r.get("analytical_dimensions", {})
+        barriers = dims.get("purchase_barriers", [])
+        status = dims.get("purchase_status", "")
+        stage = dims.get("purchase_stage", "")
+        return len(barriers) > 0 or status == "postponed" or stage in ["consideration", "shortlist"]
+        
+    myntra_friction_df = df_data[df_data.apply(is_myntra_friction_record, axis=1)]
     myntra_friction_count = len(myntra_friction_df)
     
     # Top Banner Metrics
@@ -277,7 +287,7 @@ def main():
     # TAB 2: MYNTRA OPPORTUNITY MATRIX
     with tab2:
         st.subheader("Myntra-Scoped Opportunity Area Rankings")
-        st.markdown("Friction opportunities analyzed **strictly on Myntra customer feedback** (Denominator: 969 records) ranked by **Frequency (%) × Friction Severity Weight**.")
+        st.markdown("Friction opportunities and wishlist-to-purchase barriers analyzed **strictly using Myntra's Friction sub-population** (Denominator: 971 records) ranked by **Frequency (%) × Friction Severity Weight**.")
         
         opp_matrix = compute_opportunity_matrix()
         df_opp = pd.DataFrame(opp_matrix)

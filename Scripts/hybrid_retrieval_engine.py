@@ -66,6 +66,8 @@ class HybridRetrievalEngine:
             filters["purchase_barriers"] = "return_concern"
         elif "delivery" in q_lower or "delay" in q_lower or "shipping" in q_lower:
             filters["purchase_barriers"] = "delivery_concern"
+        elif "urgent" in q_lower or "urgency" in q_lower or "rush" in q_lower or "hurry" in q_lower:
+            filters["purchase_barriers"] = "lack_of_urgency"
             
         if "postpone" in q_lower or "wait" in q_lower or "delay" in q_lower or "prevent" in q_lower or "friction" in q_lower or "barrier" in q_lower:
             filters["purchase_status"] = "postponed"
@@ -118,7 +120,9 @@ class HybridRetrievalEngine:
         if not any(kw in q_lower for kw in DOMAIN_KEYWORDS):
             return []
             
-        if any(kw in q_lower for kw in ["save", "saving", "bookmark", "bookmarking", "wishlist", "only save", "why do users add", "add to"]):
+        if any(kw in q_lower for kw in ["urgent", "urgency", "rush", "hurry"]):
+            return ["urgent", "urgency", "wait", "later", "saving", "wishlist", "stock", "sale", "price drop"]
+        elif any(kw in q_lower for kw in ["save", "saving", "bookmark", "bookmarking", "wishlist", "only save", "why do users add", "add to"]):
             return ["wishlist", "saved", "price drop", "sale", "discount", "later", "buy later", "outfit", "bookmark"]
         elif "prevent" in q_lower or "prevents" in q_lower or "barrier" in q_lower or "friction" in q_lower:
             return ["price", "expensive", "quality", "fabric", "delivery", "return", "refund", "size"]
@@ -153,11 +157,12 @@ class HybridRetrievalEngine:
             r for r in self.metadata_store
             if r.get("platform_brand") == "myntra" and (
                 len(r.get("analytical_dimensions", {}).get("purchase_barriers", [])) > 0 or
-                r.get("analytical_dimensions", {}).get("purchase_status") == "postponed"
+                r.get("analytical_dimensions", {}).get("purchase_status") == "postponed" or
+                r.get("analytical_dimensions", {}).get("purchase_stage") in ["consideration", "shortlist"]
             )
         ]
         ref_denominator = len(myntra_hesitations)
-        pop_name = "Myntra purchase-hesitation conversations"
+        pop_name = "Myntra purchase-friction sub-population"
 
         barrier_key = applied_filters.get("purchase_barriers")
         if barrier_key:
