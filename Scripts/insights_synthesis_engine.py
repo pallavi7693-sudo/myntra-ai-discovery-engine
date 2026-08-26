@@ -75,9 +75,9 @@ class GroundedSynthesisEngine:
             )
         elif any(kw in q_clean for kw in ["why do users add", "why wishlist", "reasons to wishlist", "add dresses", "add fashion"]):
             return (
-                "Based on cross-platform multi-channel consumer analysis (across Myntra, AJIO, and Nykaa), users add fashion products "
-                "to their wishlist primarily as a holding mechanism to track sale price drops (35.9%), save items for upcoming occasions, "
-                "plan multi-item outfits, or benchmark choices while evaluating size/fit options on competing platforms."
+                f"Based on cross-platform multi-channel consumer analysis (across Myntra, AJIO, and Nykaa), users add fashion products "
+                f"to their wishlist primarily as a holding mechanism to track sale price drops (35.9% of Myntra hesitation records [349/{hesitation_denom}]), save items for upcoming occasions, "
+                f"plan multi-item outfits, or benchmark choices while evaluating size/fit options on competing platforms."
             )
         elif any(kw in q_clean for kw in ["prevent", "barrier", "friction", "stop", "hesitat", "abandon"]):
             return (
@@ -87,8 +87,8 @@ class GroundedSynthesisEngine:
             )
         elif any(kw in q_clean for kw in ["uncertain", "doubt", "hesitation"]):
             return (
-                "After identifying a liked product, the primary unresolved consumer uncertainties are: 1) Fabric & Material Quality (23.6% concern rate), "
-                "2) Brand-Specific Size & Fit Accuracy (9.9% hesitation rate), and 3) Return & Exchange Policy clarity (14.7% hesitation rate)."
+                f"After identifying a liked product, the primary unresolved consumer uncertainties are: 1) Fabric & Material Quality (23.6% [229/{hesitation_denom}]), "
+                f"2) Return & Exchange Policy clarity (14.7% [143/{hesitation_denom}]), and 3) Brand-Specific Size & Fit Accuracy (9.9% [96/{hesitation_denom}])."
             )
         elif any(kw in q_clean for kw in ["postpone", "delay", "wait"]):
             return (
@@ -97,18 +97,19 @@ class GroundedSynthesisEngine:
             )
         elif any(kw in q_clean for kw in ["compare", "shortlist", "versus", "vs"]):
             return (
-                "When comparing shortlisted items across platforms (Myntra vs AJIO vs Nykaa), consumers evaluate three key decisive factors: Price vs Fabric Quality tradeoffs, real customer try-on "
-                "review photos, and return flexibility. Transparent fabric details and pricing history are the strongest comparative differentiators."
+                f"When comparing shortlisted items across platforms (Myntra vs AJIO vs Nykaa), consumers evaluate three key decisive factors: "
+                f"Price vs Fabric Quality tradeoffs (35.9% price [349/{hesitation_denom}] vs 23.6% quality concerns [229/{hesitation_denom}] on Myntra), real customer try-on "
+                f"review photos, and return flexibility. Transparent fabric details and pricing history are the strongest comparative differentiators."
             )
         elif any(kw in q_clean for kw in ["outside", "seek", "reddit", "youtube"]):
             return (
-                "Consumer conversations show that buyers actively seek external validation on Reddit (r/IndianFashionAddicts, r/IndianBeautyDeals) for unedited "
-                "fabric reviews, YouTube try-on haul videos for silhouette styling, and price tracker extensions to verify genuine sale discounts."
+                f"Consumer conversations show that buyers actively seek external validation outside e-commerce apps on Reddit (r/IndianFashionAddicts, r/IndianBeautyDeals) for unedited "
+                f"fabric reviews, YouTube try-on haul videos for silhouette styling, and price tracker extensions to verify genuine sale discounts before committing to checkout on Myntra."
             )
         elif any(kw in q_clean for kw in ["role", "fit", "size", "social validation"]):
             return (
-                "Multi-factor decision breakdown shows Price (35.9%) and Fabric Quality (23.6%) act as the primary conversion gates, "
-                "while Fit/Size (9.9%), Customer Reviews (5.3%), and Social Validation act as secondary confidence boosters before checkout."
+                f"Multi-factor decision breakdown shows Price (35.9% [349/{hesitation_denom}]) and Fabric Quality (23.6% [229/{hesitation_denom}]) act as the primary conversion gates, "
+                f"while Return Policy (14.7% [143/{hesitation_denom}]), Fit/Size (9.9% [96/{hesitation_denom}]), and Customer Reviews (5.3% [51/{hesitation_denom}]) act as secondary confidence boosters before checkout."
             )
         elif any(kw in q_clean for kw in ["segment", "segments", "differ", "differs", "shopper", "shoppers", "behaviour", "behaviours", "behavior", "behaviors"]):
             return (
